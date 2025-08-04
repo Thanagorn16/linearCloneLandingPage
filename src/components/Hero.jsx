@@ -1,133 +1,192 @@
 import "tailwindcss"
 import { clsx } from 'clsx'
 import { useInView } from 'react-intersection-observer'
-import React, {useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef, useCallback } from "react";
+
+const ANIMATION_CONFIG = {
+	WORD_DELEY: 80,
+	INITIAL_DELAY: 100,
+	SUBTITLE_BUFFER: 300,
+	VIDEO_DELAY: 1000,
+	DURATION: 1000
+};
+
+const COLORS = {
+  softWhite: 'text-zinc-50',
+  greyWhite: 'text-white/70',
+  darkBg: 'text-zinc-900',
+  buttonBg: 'bg-zinc-200',
+  buttonHover: 'hover:bg-white',
+  secondaryHover: 'hover:bg-white/10'
+};
+
+const getAnimationClasses = (isVisible, delay = 0) => clsx(
+	'transition-all duration-1000 ease-out transform',
+	isVisible
+		? 'opacity-100 blur-0 translate-y-0'
+		: 'opacity-0 blur-md translate-y-2',    
+	delay > 0 && `delay-${delay}`
+)
 
 export default function Hero () {
-	const softWhite = 'text-[rgb(247,248,248))]';
-	const greyWhite = 'text-[hsla(0, 0%, 100%, 0.7)]';
+	const {ref, inView} = useInView({
+		triggerOnce: true, 
+		threshold: 0.1
+	});
 
-	const {ref, inView} = useInView({triggerOnce: true, threshold: 0.1})
-	const [showFirst, setShowFirst] = useState(false);
-	const [showSecond, setShowSecond] = useState(false);
-
-	const head = 'Linear is a purpose-built tool for planning and building products';
-	const headWords = head.split(' ');
-
-	const headAnimationTime = headWords.length * 80;
+	const [animations, setAnimations] = useState({
+		showHeading: false,
+		showSubtitle: false
+	});
+	
 	const videoRef = useRef(null);
 
+	const headingText = 'Linear is a purpose-built tool for planning and building products';
+	const headingWords = headingText.split(' ');
+	const headingAnimationTime = headingWords.length * ANIMATION_CONFIG.WORD_DELEY;
+
+	// memorized video play function
+	const playVideo = useCallback(() => {
+		if (videoRef.current) 
+			videoRef.current.play().catch(console.warn);
+	}, []);
+
+	// Handle animations when component comes into view
 	useEffect(() => {
-		if (inView) {
-			const firstTimer = setTimeout(() => {
-				setShowFirst(true);
-			}, 100); //100ms between each item
+		if (!inView)  return
 
-			const secondTimer = setTimeout(() => {
-				setShowSecond(true)
-			}, headAnimationTime + 300) // wait for all words + some buffer
+		const timers = [];
 
-			return () => {
-				clearInterval(firstTimer)
-				clearTimeout(secondTimer)
-			}
-		}
-	}, [inView, headAnimationTime])
+		// start heading anime
+		const headingTimer = setTimeout(() => {
+				setAnimations(prev => ({ ...prev, showHeading: true}));
+		}, ANIMATION_CONFIG.INITIAL_DELAY);
+		timers.push(headingTimer);
 
+		// start subtitle and buttons anime
+		const subtitleTimer = setTimeout(() => {
+			setAnimations(prev => ({ ...prev, showSubtitle: true}));
+		}, headingAnimationTime + ANIMATION_CONFIG.SUBTITLE_BUFFER);
+		timers.push(subtitleTimer);
+
+		return () => timers.forEach(clearTimeout);
+
+	}, [inView, headingAnimationTime])
+
+	// Handle video playback
 	useEffect(() => {
-		if (showSecond && videoRef.current) {
-			setTimeout(() => {
-				if (videoRef.current)
-					videoRef.current.play();
-			}, 2000)
-		}
-	}, [showSecond])
+		if (!animations.showSubtitle) return;
+
+		const videoTimer = setTimeout(playVideo, ANIMATION_CONFIG.VIDEO_DELAY);
+		return () => clearTimeout(videoTimer);
+	}, [animations.showSubtitle, playVideo]);
 
 	return (
-		<section className="mt-20">
-			<div 
-				ref={ref}
-				className="max-w-5xl mx-auto px-4">
-				<span 
-					className="block w-full">
+		<section className="mt-20" aria-label="Hero section">
+			<div ref={ref} className="max-w-5xl mx-auto px-4">
+				<h1 className="block w-full">
 					<span className='inline-block max-w-[800px] text-[3.5rem] leading-tight font-medium'>
-						{headWords.map((word, i) => ( // to show and unblur word by word
-							<React.Fragment key={i}>
+						{headingWords.map((word, index) => ( // to show and unblur word by word
+							<React.Fragment key={`${word}-${index}`}>
 								<span
-									className={clsx(`inline-block transition-all duration-1000 ease-out transform ${
-									showFirst	
-											? 'opacity-100 blur-0 translate-y-0'
-											: 'opacity-0 blur-md translate-y-2'
-									}`, softWhite)}
-									style={{transitionDelay: `${i * 80}ms`}}
+									className={clsx(
+										'inline-block',
+										getAnimationClasses(animations.showHeading),
+										COLORS.softWhite
+									)}
+									style={{
+										transitionDelay: `${index * ANIMATION_CONFIG.WORD_DELEY}ms`
+									}}
+									aria-hidden={!animations.showHeading}
 								>
 									{word}
-								</span>{' '}
+								</span>
+								{index < headingWords.length - 1 && ' '}
 							</React.Fragment> // to use whitespace with inline-block
 						))}
 					</span>
-				</span>
-				<h2 className={clsx(`mt-5 font-medium text-xl transition-all duration-1000 ease-out transform ${
-					showSecond	
-							? 'opacity-100 blur-0 translate-y-0'
-							: 'opacity-0 blur-md translate-y-2'
-					}`, greyWhite)}
+				</h1>
+
+				<h2 
+					className={clsx('mt-5 font-medium text-xl',
+						getAnimationClasses(animations.showSubtitle),
+						COLORS.greyWhite
+					)}
 				>
 						Meet the system for modern software development.<br/>
 						Streamline issues, projects, and product roadmaps
 				</h2>
+
 				<div className="flex flex-row mt-10 gap-4">
 					<button
-						className={`px-4 py-2 text-[hsl(210,11%,4%)] rounded-lg font-medium hover:bg-[hsl(0,0%,100%)] transition-all cursor-pointer
-							duration-1000 ease-out transform ${
-							showSecond	
-									? 'opacity-100 blur-0 translate-y-0 bg-[hsl(0,0%,90%)]'
-									: 'opacity-0 blur-md translate-y-2'
-						}`}>
+						className={clsx(
+							'px-4 py-2 rounded-lg font-medium cursor-pointer',
+							getAnimationClasses(animations.showSubtitle),
+							COLORS.buttonBg,
+							COLORS.buttonHover,
+							'hover:transition-colors hover:duration-75',
+
+						)}
+						aria-label="Start building with Linear"
+					>
 						Start building
 					</button>
-					<button className={`group flex items-center gap-2 px-4 py-2 font-medium rounded-lg hover:bg-[hsl(0,0%,15%)] transition-all cursor-pointer 
-						ease-out transform ${
-						showSecond	
-								? 'opacity-100 blur-0 translate-y-0 delay-300 duration-1000'
-								: 'opacity-0 blur-md translate-y-2'
-						}`}>
-						<span className="text-transparent bg-gradient-to-r from-[hsl(0,0%,90%)] to-[hsl(219,6%,57%)] bg-clip-text">
+
+					<button 
+						className={clsx(
+							'group flex items-center gap-2 px-4 py-2 font-medium rounded-lg cursor-pointer',
+							getAnimationClasses(animations.showSubtitle, 300),
+							COLORS.secondaryHover,
+							'hover:transition-colors hover:duration-75 hover:delay-0'
+						)}
+						aria-label="Learn about Linear for Agents"
+					>
+						<span className="text-transparent bg-gradient-to-r from-zinc-200 to-zinc-400 bg-clip-text">
 							Introducing Linear for Agents
 						</span>
-						<svg className="w-4 h-4 text-gray-400 fill-current group-hover:text-[hsl(0,0%,90%)] transition-colors duration-300"
-							style= {{strokeWidth: '1.5'}}
-							viewBox="0 0 16 16"
-							role="img" 
-							focusable="false" 
-							aria-hidden="true" 
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path d="M5.46967 11.4697C5.17678 11.7626 5.17678 12.2374 5.46967 12.5303C5.76256 12.8232 6.23744 12.8232 6.53033 12.5303L10.5303 8.53033C10.8207 8.23999 10.8236 7.77014 10.5368 7.47624L6.63419 3.47624C6.34492 3.17976 5.87009 3.17391 5.57361 3.46318C5.27713 3.75244 5.27128 4.22728 5.56054 4.52376L8.94583 7.99351L5.46967 11.4697Z"></path>
-						</svg>
+						<ChevronRightIcon/>
 					</button>
 				</div>
+
 				<div className="mt-10 relative w-full rounded-xl overflow-hidden">
 					<video 
 						ref={videoRef}
-						className={`w-full transition-all duration-1000 delay-700 ease-out transform
-						${
-							showSecond
-								? 'opacity-100 blur-0 translate-y-0'
-								: 'opacity-0 blur-2xl translate-y-2'
-						}`}
-						autoPlay
+						className={clsx(
+							'w-full',
+							getAnimationClasses(animations.showSubtitle)
+						)}
 						muted
 						loop
 						playsInline
 						preload="metadata"
+						aria-label="Linear product demonstration"
 					>
 						<source src="../../start.mp4" type="video/mp4" />
+						<p>Your browser doesn't support video playback.</p>
 					</video>
-					<div className="absolute inset-0 bg-black/50 mix-blend-multiply p"></div>
+					<div 
+						className="absolute inset-0 bg-black/50 mix-blend-multiply pointer-events-none"
+						aria-hidden="true"
+					>
+					</div>
+					
 				</div>
 			</div>
 
 		</section>
 	)
+}
+
+function ChevronRightIcon() {
+	return (						
+		<svg className="w-4 h-4 text-gray-400 fill-current group-hover:text-zinc-200"
+			viewBox="0 0 16 16"
+			role="img" 
+			focusable="false" 
+			aria-hidden="true" 
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path d="M5.46967 11.4697C5.17678 11.7626 5.17678 12.2374 5.46967 12.5303C5.76256 12.8232 6.23744 12.8232 6.53033 12.5303L10.5303 8.53033C10.8207 8.23999 10.8236 7.77014 10.5368 7.47624L6.63419 3.47624C6.34492 3.17976 5.87009 3.17391 5.57361 3.46318C5.27713 3.75244 5.27128 4.22728 5.56054 4.52376L8.94583 7.99351L5.46967 11.4697Z"></path>
+		</svg>
+	);
 }
