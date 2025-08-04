@@ -1,47 +1,97 @@
 import "tailwindcss"
 import { clsx } from 'clsx'
 import { useInView } from 'react-intersection-observer'
-import { useEffect, useState } from "react";
+import React, {useEffect, useState, useRef } from "react";
 
 export default function Hero () {
-	const softWhite = 'text-[hsl(180,7%,98%)]';
+	const softWhite = 'text-[rgb(247,248,248))]';
 	const greyWhite = 'text-[hsla(0, 0%, 100%, 0.7)]';
 
 	const {ref, inView} = useInView({triggerOnce: true, threshold: 0.1})
-	const [showStep, setShowStep] = useState(0);
+	const [showFirst, setShowFirst] = useState(false);
+	const [showSecond, setShowSecond] = useState(false);
+
+	const head = 'Linear is a purpose-built tool for planning and building products';
+	const headWords = head.split(' ');
+
+	const headAnimationTime = headWords.length * 80;
+	const videoRef = useRef(null);
 
 	useEffect(() => {
 		if (inView) {
-			let step = 0;
-			const interval =setInterval(() => {
-				step++;
-				setShowStep(step);
-				if (step >= 4) clearInterval(interval) //stop after final element
-			}, 200); //200ms between each item
+			const firstTimer = setTimeout(() => {
+				setShowFirst(true);
+			}, 100); //100ms between each item
+
+			const secondTimer = setTimeout(() => {
+				setShowSecond(true)
+			}, headAnimationTime + 300) // wait for all words + some buffer
+
+			return () => {
+				clearInterval(firstTimer)
+				clearTimeout(secondTimer)
+			}
 		}
-	}, [inView])
+	}, [inView, headAnimationTime])
+
+	useEffect(() => {
+		if (showSecond && videoRef.current) {
+			setTimeout(() => {
+				if (videoRef.current)
+					videoRef.current.play();
+			}, 2000)
+		}
+	}, [showSecond])
 
 	return (
-		<section 
-			ref={ref}
-			className={`mt-20 transition-all duration-2000 ease-out transform ${
-				inView ? 'opacity-100 blur-0 translate-x-0' : 'opacity-0 blur-md translate-x-8'
-			}`}>
-			<div className="max-w-5xl mx-auto px-4">
-				<span className="block w-full">
-					<span className={clsx('inline-block max-w-[800px] text-[3.5rem] leading-tight font-medium', softWhite)}>
-						Linear is a purpose-built tool for planning and building products
+		<section className="mt-20">
+			<div 
+				ref={ref}
+				className="max-w-5xl mx-auto px-4">
+				<span 
+					className="block w-full">
+					<span className='inline-block max-w-[800px] text-[3.5rem] leading-tight font-medium'>
+						{headWords.map((word, i) => ( // to show and unblur word by word
+							<React.Fragment key={i}>
+								<span
+									className={clsx(`inline-block transition-all duration-1000 ease-out transform ${
+									showFirst	
+											? 'opacity-100 blur-0 translate-y-0'
+											: 'opacity-0 blur-md translate-y-2'
+									}`, softWhite)}
+									style={{transitionDelay: `${i * 80}ms`}}
+								>
+									{word}
+								</span>{' '}
+							</React.Fragment> // to use whitespace with inline-block
+						))}
 					</span>
 				</span>
-				<h2 className={clsx('mt-5 font-medium text-xl', greyWhite)}>
-					Meet the system for modern software development.<br/>
-					Streamline issues, projects, and product roadmaps.
+				<h2 className={clsx(`mt-5 font-medium text-xl transition-all duration-1000 ease-out transform ${
+					showSecond	
+							? 'opacity-100 blur-0 translate-y-0'
+							: 'opacity-0 blur-md translate-y-2'
+					}`, greyWhite)}
+				>
+						Meet the system for modern software development.<br/>
+						Streamline issues, projects, and product roadmaps
 				</h2>
 				<div className="flex flex-row mt-10 gap-4">
-					<button className="px-4 py-2 bg-[hsl(0,0%,90%)] text-[hsl(210,11%,4%)] rounded-lg font-medium hover:bg-[hsl(0,0%,100%)] transition cursor-pointer">
+					<button
+						className={`px-4 py-2 text-[hsl(210,11%,4%)] rounded-lg font-medium hover:bg-[hsl(0,0%,100%)] transition-all cursor-pointer
+							duration-1000 ease-out transform ${
+							showSecond	
+									? 'opacity-100 blur-0 translate-y-0 bg-[hsl(0,0%,90%)]'
+									: 'opacity-0 blur-md translate-y-2'
+						}`}>
 						Start building
 					</button>
-					<button className="group flex items-center gap-2 px-4 py-2 font-medium rounded-lg hover:bg-[hsl(0,0%,15%)] transition-colors duration-300 cursor-pointer">
+					<button className={`group flex items-center gap-2 px-4 py-2 font-medium rounded-lg hover:bg-[hsl(0,0%,15%)] transition-all cursor-pointer 
+						ease-out transform ${
+						showSecond	
+								? 'opacity-100 blur-0 translate-y-0 delay-300 duration-1000'
+								: 'opacity-0 blur-md translate-y-2'
+						}`}>
 						<span className="text-transparent bg-gradient-to-r from-[hsl(0,0%,90%)] to-[hsl(219,6%,57%)] bg-clip-text">
 							Introducing Linear for Agents
 						</span>
@@ -57,14 +107,20 @@ export default function Hero () {
 						</svg>
 					</button>
 				</div>
-				<div className="mt-20 relative w-full rounded-xl overflow-hidden">
+				<div className="mt-10 relative w-full rounded-xl overflow-hidden">
 					<video 
-						className="w-full"
+						ref={videoRef}
+						className={`w-full transition-all duration-1000 delay-700 ease-out transform
+						${
+							showSecond
+								? 'opacity-100 blur-0 translate-y-0'
+								: 'opacity-0 blur-2xl translate-y-2'
+						}`}
 						autoPlay
 						muted
 						loop
 						playsInline
-						preload="auto"
+						preload="metadata"
 					>
 						<source src="../../start.mp4" type="video/mp4" />
 					</video>
