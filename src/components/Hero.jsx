@@ -148,13 +148,14 @@ export default function Hero () {
 					</button>
 				</div>
 
-				<div className="mt-10 relative w-full rounded-xl overflow-hidden">
+				<div className="mt-10 relative rounded-xl overflow-hidden">
 					<video 
 						ref={videoRef}
-						className={clsx(
-							'w-full',
-							getAnimationClasses(animations.showSubtitle)
-						)}
+						className={clsx(`w-full transition-all duration-2000 ease-out transform delay-400 ${
+							animations.showSubtitle
+								? 'opacity-100 blur-0 scale-x-100'
+								: 'opacity-0 blur-2xl scale-x-0'
+						}`)}
 						muted
 						loop
 						playsInline
@@ -164,12 +165,6 @@ export default function Hero () {
 						<source src="../../start.mp4" type="video/mp4" />
 						<p>Your browser doesn't support video playback.</p>
 					</video>
-					<div 
-						className="absolute inset-0 bg-black/50 mix-blend-multiply pointer-events-none"
-						aria-hidden="true"
-					>
-					</div>
-					
 				</div>
 			</div>
 
