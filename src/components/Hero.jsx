@@ -1,4 +1,3 @@
-import "tailwindcss"
 import { clsx } from 'clsx'
 import { useInView } from 'react-intersection-observer'
 import React, {useEffect, useState, useRef, useCallback } from "react";
@@ -15,6 +14,7 @@ const COLORS = {
   softWhite: 'text-zinc-50',
   greyWhite: 'text-white/70',
   darkBg: 'text-zinc-900',
+  buttonWhite: 'bg-white/70',
   buttonBg: 'bg-zinc-200',
   buttonHover: 'hover:bg-white',
   secondaryHover: 'hover:bg-white/10'
@@ -82,7 +82,7 @@ export default function Hero () {
 	}, [animations.showSubtitle, playVideo]);
 
 	return (
-		<section className="mt-20" aria-label="Hero section">
+		<section className="mt-20" aria-label="Hero_Section">
 			<div ref={ref} className="max-w-5xl mx-auto px-4">
 				<h1 className="block w-full">
 					<span className='inline-block max-w-[800px] text-[3.5rem] leading-tight font-medium'>
@@ -122,7 +122,7 @@ export default function Hero () {
 						className={clsx(
 							'px-4 py-2 rounded-lg font-medium cursor-pointer',
 							getAnimationClasses(animations.showSubtitle),
-							COLORS.buttonBg,
+							COLORS.buttonWhite,
 							COLORS.buttonHover,
 							'hover:transition-colors hover:duration-75',
 
