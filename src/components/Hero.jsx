@@ -82,7 +82,7 @@ export default function Hero () {
 	}, [animations.showSubtitle, playVideo]);
 
 	return (
-		<section className="mt-20" aria-label="Hero_Section">
+		<section className="mt-16" aria-label="Hero_Section">
 			<div ref={ref} className="max-w-5xl mx-auto px-4">
 				<h1 className="block w-full">
 					<span className='inline-block max-w-[800px] text-[3.5rem] leading-tight font-medium'>
