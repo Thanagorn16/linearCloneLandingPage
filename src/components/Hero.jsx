@@ -135,7 +135,7 @@ export default function Hero () {
 					<button 
 						className={clsx(
 							'group flex items-center gap-2 px-4 py-2 font-medium rounded-lg cursor-pointer',
-							getAnimationClasses(animations.showSubtitle, 300),
+							getAnimationClasses(animations.showSubtitle, 400),
 							COLORS.secondaryHover,
 							'hover:transition-colors hover:duration-75 hover:delay-0'
 						)}

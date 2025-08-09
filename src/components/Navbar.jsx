@@ -24,20 +24,25 @@ function NavItem({label, dropdownItems}) {
 
 			{open && (
 				<div className="absolute z-1 w-2xl h-20 py-39 mt-2 -translate-x-20 bg-[rgb(9,10,11)] border border-zinc-800 rounded-xl">
-					<div className="flex absolute top-2 left-2 right-2 bottom-17 box-border border border-zinc-800 p-4 rounded-lg bg-[#161616]">
-						<div className="absolute box-border size-50 px-2">
-							<span className="text-xs text-[#62666a]">Core Features</span>
-							<div className="flex flex-col">
-								<a className="">
-									<h2 className="text-sm mt-4">Plan</h2>
-									<p className="text-xs">Set the product direction with projects and initiatives</p>
+					<div className="flex absolute top-2 left-2 right-2 bottom-17 border border-zinc-800  rounded-lg bg-[#161616]">
+						<div className="flex flex-col w-50 top-3 px-2 py-4 border-r-1 border-zinc-800">
+							<span className="text-xs px-2 text-[#62666a]">Core Features</span>
+							<div className="relative flex flex-col">
+								<a className="mt-2 px-2 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
+									<h2 className="text-sm">Plan</h2>
+									<p className="text-xs tracking-tight text-[#62666a]">Set the product direction with projects and initiatives</p>
+								</a>
+							</div>
+							<div className="relative flex flex-col">
+								<a className="mt-2 px-2 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
+									<h2 className="text-sm">Build</h2>
+									<p className="text-xs text-[#62666a]">Make progress with issue tracking and cycle planning</p>
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			)}
-
 		</div>
 	)
 } 
