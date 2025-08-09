@@ -7,6 +7,28 @@ const textBtn = (hover = 'hover:bg-white/10') => clsx(
 	cursor-pointer`
 )
 
+function GetMenu({topic, desc}) {
+	return (
+		<div className="relative flex flex-col">
+			<a className="mt-2 px-1 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
+				<h2 className="text-sm">{topic}</h2>
+				<p className="text-xs tracking-tight text-[#62666a]">{desc}</p>
+			</a>
+		</div>
+	);
+}
+
+function GetMenuGrid({topic, desc}) {
+	return (
+		<div className="relative flex flex-col">
+			<a className="mt-2 px-2 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
+				<h2 className="text-sm">{topic}</h2>
+				<p className="text-xs tracking-tight text-[#62666a]">{desc}</p>
+			</a>
+		</div>
+	);
+}
+
 function NavItem({label, dropdownItems}) {
 	const [open, setOpen] = useState(false);
 
@@ -25,19 +47,20 @@ function NavItem({label, dropdownItems}) {
 			{open && (
 				<div className="absolute z-1 w-2xl h-20 py-39 mt-2 -translate-x-20 bg-[rgb(9,10,11)] border border-zinc-800 rounded-xl">
 					<div className="flex absolute top-2 left-2 right-2 bottom-17 border border-zinc-800  rounded-lg bg-[#161616]">
-						<div className="flex flex-col w-50 top-3 px-2 py-4 border-r-1 border-zinc-800">
+						<div className="flex flex-col w-55 top-3 px-5 py-4 border-r-1 border-zinc-800">
 							<span className="text-xs px-2 text-[#62666a]">Core Features</span>
-							<div className="relative flex flex-col">
-								<a className="mt-2 px-2 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
-									<h2 className="text-sm">Plan</h2>
-									<p className="text-xs tracking-tight text-[#62666a]">Set the product direction with projects and initiatives</p>
-								</a>
-							</div>
-							<div className="relative flex flex-col">
-								<a className="mt-2 px-2 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
-									<h2 className="text-sm">Build</h2>
-									<p className="text-xs text-[#62666a]">Make progress with issue tracking and cycle planning</p>
-								</a>
+							<GetMenu topic={"Plan"} desc={"Set the product direction with projects and initatives"}/>
+							<GetMenu topic={"Build"} desc={"Make progress with issue tracking and cycle planning"}/>
+						</div>
+						<div className="flex flex-col grow top-3 px-5 py-4">
+							<span className="text-xs px-2 text-[#62666a]">More</span>
+							<div className="grid grid-flow-col grid-rows-3 gap-1">
+								<GetMenuGrid topic={"Customer requests"} desc={"Manage user feedback"}/>
+								<GetMenuGrid topic={"Insights"} desc={"Realtime analytics"}/>
+								<GetMenuGrid topic={"Linear Asks"} desc={"Workplace requests"}/>
+								<GetMenuGrid topic={"Intregations"} desc={"Collaborate across tools"}/>
+								<GetMenuGrid topic={"Mobile app"} desc={"Linear in your pocket"}/>
+								<GetMenuGrid topic={"Linear for Agents"} desc={"Collaborate with AI teammates"}/>
 							</div>
 						</div>
 					</div>
