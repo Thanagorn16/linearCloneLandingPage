@@ -7,21 +7,10 @@ const textBtn = (hover = 'hover:bg-white/10') => clsx(
 	cursor-pointer`
 )
 
-function GetMenu({topic, desc}) {
+function GetMenu({topic, desc, px = 'px-1'}) {
 	return (
 		<div className="relative flex flex-col">
-			<a className="mt-2 px-1 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
-				<h2 className="text-sm">{topic}</h2>
-				<p className="text-xs tracking-tight text-[#62666a]">{desc}</p>
-			</a>
-		</div>
-	);
-}
-
-function GetMenuGrid({topic, desc}) {
-	return (
-		<div className="relative flex flex-col">
-			<a className="mt-2 px-2 py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer">
+			<a className={clsx(`mt-2 ${px} py-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer`)}>
 				<h2 className="text-sm">{topic}</h2>
 				<p className="text-xs tracking-tight text-[#62666a]">{desc}</p>
 			</a>
@@ -46,6 +35,7 @@ function NavItem({label, dropdownItems}) {
 
 			{open && (
 				<div className="absolute z-1 w-2xl h-20 py-39 mt-2 -translate-x-20 bg-[rgb(9,10,11)] border border-zinc-800 rounded-xl">
+					{/* inner box */}
 					<div className="flex absolute top-2 left-2 right-2 bottom-17 border border-zinc-800  rounded-lg bg-[#161616]">
 						<div className="flex flex-col w-55 top-3 px-5 py-4 border-r-1 border-zinc-800">
 							<span className="text-xs px-2 text-[#62666a]">Core Features</span>
@@ -55,14 +45,21 @@ function NavItem({label, dropdownItems}) {
 						<div className="flex flex-col grow top-3 px-5 py-4">
 							<span className="text-xs px-2 text-[#62666a]">More</span>
 							<div className="grid grid-flow-col grid-rows-3 gap-1">
-								<GetMenuGrid topic={"Customer requests"} desc={"Manage user feedback"}/>
-								<GetMenuGrid topic={"Insights"} desc={"Realtime analytics"}/>
-								<GetMenuGrid topic={"Linear Asks"} desc={"Workplace requests"}/>
-								<GetMenuGrid topic={"Intregations"} desc={"Collaborate across tools"}/>
-								<GetMenuGrid topic={"Mobile app"} desc={"Linear in your pocket"}/>
-								<GetMenuGrid topic={"Linear for Agents"} desc={"Collaborate with AI teammates"}/>
+								<GetMenu topic={"Customer requests"} desc={"Manage user feedback"} px={'px-2'}/>
+								<GetMenu topic={"Insights"} desc={"Realtime analytics"} px={'px-2'}/>
+								<GetMenu topic={"Linear Asks"} desc={"Workplace requests"} px={'px-2'}/>
+								<GetMenu topic={"Intregations"} desc={"Collaborate across tools"} px={'px-2'}/>
+								<GetMenu topic={"Mobile app"} desc={"Linear in your pocket"} px={'px-2'}/>
+								<GetMenu topic={"Linear for Agents"} desc={"Collaborate with AI teammates"} px={'px-2'}/>
 							</div>
 						</div>
+					</div>
+
+					<div className="flex grow mt-25 px-6 py-1 justify-between">
+						<a className={clsx(`${textBtn()} !text-[#f7f8f8]`)}> 
+							New: Agent Interaction Guidelines and SDK
+						</a>
+						<button className={clsx(`${textBtn()} !text-[#828fff]`)}>Changelog</button>
 					</div>
 				</div>
 			)}
