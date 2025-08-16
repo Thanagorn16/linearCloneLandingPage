@@ -47,7 +47,7 @@ export default function Customer() {
 				<span className="text-[#f7f8f8]">Powering the world's best product teams.<br/></span>
 				Fron next-gen startups to established enterprises.
 			</p>
-			<div className="relative grid grid-cols-3 gap-8 h-full py-15 justify-items-center group">
+			<div className="relative grid grid-cols-3 gap-8 h-full py-15 pb-6 pt-6 justify-items-center group">
 				{pairs.map((pair) => (
 					<div key={pair} className={`w-full h-30 py-9 text-3xl text-center bg-[#090a0b] transition-all duration-300 ease-in-out
 						group-hover:blur-sm
