@@ -18,7 +18,7 @@ function Card({image, alt, title}) {
 
 export default function Purpose() {
 	return (
-		<section className="max-w-5xl mx-auto px-4 mt-25 ">
+		<section className="max-w-5xl mx-auto h-190 px-4 mt-25 ">
 			<div className="flex flex-row gap-x-25">
 				<div className="basis-1/2">
 					<h1 className="text-6xl font-medium text-[#f7f8f8]">
