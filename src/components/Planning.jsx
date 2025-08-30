@@ -1,3 +1,4 @@
+import EditorPart from "./EditorPart";
 import NotifCard from "./NotifCard";
 import ProjectOverview from "./ProjectOverViewPlanning";
 
@@ -5,6 +6,7 @@ export default function Planning() {
 	return (
 		<section className="w-full bg-gradient-to-b from-[hsl(210,10%,8%)] to-[#090a0b]">
 			<div className="max-w-5xl mx-auto px-4">
+				{/* first part */}
 				<div className="flex items-center gap-x-2 py-40 pb-5">
 					<div className="w-4 h-2 rounded-full bg-[#68cc58]"/>
 					<p className="text-sm text-[#d0d6e0]">Project and long-term planning</p>
@@ -20,6 +22,7 @@ export default function Planning() {
 					</span>
 				</p>
 
+				{/* big image and overlay */}
 				<div className="relative">
 					<img 
 						className="scale-200 mt-20" 
@@ -29,6 +32,7 @@ export default function Planning() {
 					<div className="absolute inset-0 scale-200 bg-gradient-to-b from-transparent to-[#090a0b]"></div>
 				</div>
 
+				{/* second part */}
 				<div className="flex mt-65 h-130 border-y-3 border-[hsla(0,0%,100%,.05)]">
 					<div className="basis-1/2">
 						<h1 className="pt-15 text-2xl font-medium text-[#f7f8f8]">
@@ -54,6 +58,9 @@ export default function Planning() {
 						</div>
 					</div>
 				</div>
+
+				{/* third part */}
+				<EditorPart/>
 			</div>
 		</section>
 	);
