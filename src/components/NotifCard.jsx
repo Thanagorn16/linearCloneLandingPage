@@ -1,8 +1,8 @@
 import clsx from "clsx";
 
 const card1 = {
-    translateX: 'translate-x-0',
-    translateY: 'translate-y-0',
+    // translateX: 'translate-x-0',
+    // translateY: 'translate-y-0',
     textColor: 'text-[#c52828]',
     stat: 'On track',
     text: 'Unexpected roadblocks forced us to take a different...',
@@ -10,8 +10,8 @@ const card1 = {
 }
 
 const card2 = {
-    translateX: 'translate-x-10',
-    translateY: '-translate-y-20',
+    // translateX: 'translate-x-10',
+    // translateY: '-translate-y-20',
     textColor: 'text-[#f2994a]',
     stat: 'At risk',
     text: 'Progress slowed down last week because...',
@@ -19,8 +19,8 @@ const card2 = {
 }
 
 const card3 = {
-    translateX: 'translate-x-20',
-    translateY: '-translate-y-40',
+    // translateX: 'translate-x-20',
+    // translateY: '-translate-y-40',
     textColor: 'text-[#68cc58]',
     stat: 'On track',
     text: 'We are ready to launch next Thursday',
@@ -81,7 +81,9 @@ function greenIcon() {
 
 const getNotifCard = (card, CardIcon) => {
     return (
-        <div className={clsx(card.translateX, card.translateY, 'flex flex-col p-4 items-start gap-2 w-120 h-30 translate-z-10 rotate-y-20 -rotate-x-10 -rotate-z-3 rounded-xl border border-[hsla(0,0%,100%,.17)] bg-[rgba(40,40,40,.5)] backdrop-blur-3xl')}>
+        <div className={clsx(card.translateX, card.translateY, `flex flex-col p-4 items-start gap-2 w-120 h-30 translate-z-10    rounded-xl border border-[hsla(0,0%,100%,.17)] bg-[hsla(0,0%,16%,.5)] backdrop-blur-xl
+            transition-all  hover:bg-[#333333] hover:-translate-y-10 
+        `)}>
             <div className="flex items-center gap-2">
                 <CardIcon/>
                 <span className={clsx(`text-base font-semibold ${card.textColor}`)}>{card.stat}</span>
@@ -96,12 +98,29 @@ const getNotifCard = (card, CardIcon) => {
 
 export default function NotifCard() {
     return (
-        <div className="relative mt-10 w-95 h-70 bg-[#090a0b]">
-            <div className="ml-5 mt-20 relative perspective-distant">
+        <>
+            <div className="flex items-center w-120 h-50 translate-z-10 rotate-y-20 -rotate-x-10 -rotate-z-3 mt-10 z-1">
                 {getNotifCard(card1, redIcon)}
-                {getNotifCard(card2, orangeIcon)}
-                {getNotifCard(card3, greenIcon)}
             </div>
-        </div>
+            <div className="absolute flex items-center w-120 h-50 translate-z-10 rotate-y-20 -rotate-x-10 -rotate-z-3 translate-x-10 -translate-y-40 z-20">
+                {getNotifCard(card2, redIcon)}
+            </div>
+            <div className="absolute flex items-center w-120 h-50 translate-z-10 rotate-y-20 -rotate-x-10 -rotate-z-3 translate-x-20 -translate-y-30 z-20">
+                {getNotifCard(card3, redIcon)}
+            </div>
+        </>
     );
+    // return (
+    //     <div className="relative mt-10 w-95 h-70 bg-[#090a0b]">
+    //         <div className="ml-5 mt-20 relative perspective-distant">
+    //             {getNotifCard(card1, redIcon)}
+    //             {/* <div className="absolute w-145 inset-0 -translate-y-10  bg-gradient-to-l from-[#090a0b] to-transparent"></div> */}
+    //             {getNotifCard(card2, orangeIcon)}
+    //             {/* <div className="absolute w-145 inset-0 -translate-y-10  bg-gradient-to-l from-[#090a0b] to-transparent"></div> */}
+    //             {getNotifCard(card3, greenIcon)}
+    //             {/* <div className="absolute w-145 inset-0 -translate-y-10  bg-gradient-to-l from-[#090a0b] to-transparent"></div> */}
+    //         </div>
+    //         {/* <div className="absolute w-145 inset-0 -translate-y-10  bg-gradient-to-l from-[#090a0b] to-transparent"></div> */}
+    //     </div>
+    // );
 }
