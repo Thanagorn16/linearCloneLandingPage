@@ -1,5 +1,6 @@
 import EditorPart from "./EditorPart";
 import NotifCard from "./NotifCard";
+import PlanningFooter from "./PlanningFooter";
 import ProjectOverview from "./ProjectOverViewPlanning";
 
 export default function Planning() {
@@ -61,6 +62,12 @@ export default function Planning() {
 
 				{/* third part */}
 				<EditorPart/>
+
+				<div className="h-15"></div>
+
+				{/* last part */}
+				<PlanningFooter/>
+
 			</div>
 		</section>
 	);
