@@ -148,22 +148,104 @@ const TwoBody = () => (
 	</div>
 )
 
-const ThreeHeader = () => {
+const ThreeHeader = () => (
+	<svg 
+		className="w-full h-6" 
+		viewBox="0 0 16 16" 
+		fill="#68cc58" 
+		role="img" 
+		focusable="false" 
+		aria-hidden="true" 
+		xmlns="http://www.w3.org/2000/svg" 
+	>
+		<path d="M1 10.75A4.25 4.25 0 0 0 5.25 15h1a.75.75 0 0 0 0-1.5h-1a2.75 2.75 0 0 1-2.75-2.75v-5.5A2.75 2.75 0 0 1 5.25 2.5h5.5a2.75 2.75 0 0 1 2.75 2.75v.997a.75.75 0 0 0 1.5 0V5.25A4.25 4.25 0 0 0 10.75 1h-5.5A4.25 4.25 0 0 0 1 5.25z"></path><path d="M10.75 14.25a.75.75 0 0 0 1.5 0v-2h2a.75.75 0 0 0 0-1.5h-2v-2a.75.75 0 0 0-1.5 0v2h-2a.75.75 0 0 0 0 1.5h2z"></path>
+	</svg>
+)
 
-}
+const ThreeBody = () => (
+	<div>
+		<span className="px-1 text-lg text-[#f7f8f8]">
+			Convert text to issues
+		</span>
 
-const ThreeBody = () => {
+		<div className="h-4"></div>
 
-}
+		<span className="w-full block text-base font-light text-[#8a8f98]">
+			Seamlessly move between idea and execution.
+		</span>
+
+		<div className="h-3"></div>
+
+		<ul className="flex flex-col gap-1">
+			<li className="flex gap-2 px-2 w-84 h-6 items-center bg-[#23232c] rounded-md">
+				<svg 
+					className="w-4 h-4"
+					viewBox="0 0 16 16" 
+					fill="#9c9da1" 
+					xmlns="http://www.w3.org/2000/svg" 
+					role="img" 
+					focusable="false" 
+					aria-hidden="true" 
+				>
+					<path fill-rule="evenodd" clipRule="evenodd" d="M14.9408 8.91622L12.9576 8.65753C12.9855 8.44385 13 8.22509 13 8.00195C13 7.77881 12.9855 7.56006 12.9576 7.34638L14.9408 7.08769C14.9799 7.38692 15 7.69208 15 8.00195C15 8.31182 14.9799 8.61699 14.9408 8.91622ZM14.4688 5.32244C14.2328 4.75336 13.9239 4.22215 13.5538 3.74046L11.968 4.95912C12.2328 5.30381 12.4533 5.68315 12.6214 6.08855L14.4688 5.32244ZM12.2615 2.44816L11.0428 4.034C10.6981 3.76912 10.3188 3.54868 9.91341 3.38057L10.6795 1.53312C11.2486 1.76911 11.7798 2.078 12.2615 2.44816ZM8.91426 1.06112L8.65557 3.04432C8.4419 3.01645 8.22314 3.00195 8 3.00195C7.77686 3.00195 7.5581 3.01645 7.34443 3.04432L7.08574 1.06112C7.38496 1.02209 7.69013 1.00195 8 1.00195C8.30987 1.00195 8.61504 1.02209 8.91426 1.06112ZM5.32049 1.53312L6.08659 3.38057C5.68119 3.54868 5.30185 3.76912 4.95716 4.034L3.73851 2.44816C4.22019 2.078 4.7514 1.76911 5.32049 1.53312ZM2.4462 3.74046L4.03204 4.95912C3.76716 5.30381 3.54673 5.68315 3.37862 6.08855L1.53116 5.32244C1.76715 4.75336 2.07605 4.22215 2.4462 3.74046ZM1.05917 7.08769C1.02013 7.38692 1 7.69208 1 8.00195C1 8.31182 1.02013 8.61699 1.05917 8.91622L3.04237 8.65753C3.01449 8.44385 3 8.22509 3 8.00195C3 7.77881 3.01449 7.56006 3.04237 7.34638L1.05917 7.08769ZM1.53116 10.6815L3.37862 9.91536C3.54673 10.3208 3.76716 10.7001 4.03204 11.0448L2.4462 12.2634C2.07605 11.7818 1.76715 11.2506 1.53116 10.6815ZM3.73851 13.5557L4.95716 11.9699C5.30185 12.2348 5.68119 12.4552 6.08659 12.6233L5.32049 14.4708C4.7514 14.2348 4.22019 13.9259 3.73851 13.5557ZM7.08574 14.9428L7.34443 12.9596C7.5581 12.9875 7.77686 13.002 8 13.002C8.22314 13.002 8.4419 12.9875 8.65557 12.9596L8.91427 14.9428C8.61504 14.9818 8.30987 15.002 8 15.002C7.69013 15.002 7.38496 14.9818 7.08574 14.9428ZM10.6795 14.4708L9.91341 12.6233C10.3188 12.4552 10.6981 12.2348 11.0428 11.9699L12.2615 13.5557C11.7798 13.9259 11.2486 14.2348 10.6795 14.4708ZM13.5538 12.2634L11.968 11.0448C12.2328 10.7001 12.4533 10.3208 12.6214 9.91536L14.4688 10.6815C14.2328 11.2506 13.924 11.7818 13.5538 12.2634Z" fill="#949698"></path>
+				</svg>
+				<span className="text-[#8a8f98]">
+					ENG-231 Implement contextual memory
+				</span>
+			</li>
+
+			<li className="flex gap-2 px-2 w-84 h-6 items-center bg-[#23232c] rounded-md">
+			<svg 
+				className="w-4 h-4"
+				xmlns="http://www.w3.org/2000/svg" 
+				fill="#9c9da1" 
+				viewBox="0 0 16 16"
+				role="img" 
+				focusable="false" 
+				aria-hidden="true" 
+				>
+				<g fill="#F2C94C" opacity=".9">
+					<path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm0-2A5 5 0 1 1 8 3a5 5 0 0 1 0 10Z"></path>
+					<path d="M11.571 8A3.571 3.571 0 0 1 8 11.571V4.43A3.572 3.572 0 0 1 11.57 8Z"></path>
+				</g>
+			</svg>
+				<span className="text-[#8a8f98]">
+					ENG-232 Better bias filtering algorithms
+				</span>
+			</li>
+
+			<li className="flex gap-2 px-2 w-84 h-6 items-center bg-[#23232c] rounded-md">
+			<svg 
+				className="w-4 h-4"
+				xmlns="http://www.w3.org/2000/svg" 
+				fill="#9c9da1" 
+				viewBox="0 0 16 16"
+				role="img" 
+				focusable="false" 
+				aria-hidden="true" 
+				>
+				<g fill="#F2C94C" opacity=".9">
+					<path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm0-2A5 5 0 1 1 8 3a5 5 0 0 1 0 10Z"></path>
+					<path d="M11.571 8A3.571 3.571 0 0 1 8 11.571V4.43A3.572 3.572 0 0 1 11.57 8Z"></path>
+				</g>
+			</svg>
+				<span className="text-[#8a8f98]">
+					ENG-233 Upgrade model selection logic
+				</span>
+			</li>
+		</ul>
+
+	</div>
+)
 
 const components = {
 	one: {Header: OneHeader, Body: OneBody},
 	two: {Header: TwoHeader, Body: TwoBody},
-	three: {Header: ThreeHeader, Body: ThreeBody}
+	three: {Header: ThreeHeader, Body: ThreeBody},
 }
 
 export default function EditorPart() { 
-	const [active, setActive] = useState("one");
+	const [active, setActive] = useState("three");
 	const ActiveComponent = components[active];
 
 	const getButton = (state, text) => {
@@ -199,84 +281,14 @@ export default function EditorPart() {
 					<div className="absolute w-90 h-90 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 inset-0">
 
 						<div className="mb-5 flex items-center w-10 h-10 rounded-xl bg-[#22362080]">
-							{/* <ActiveComponent.Header/> */}
-							<svg 
-								className="w-full h-6" 
-								viewBox="0 0 16 16" 
-								fill="#68cc58" 
-								role="img" 
-								focusable="false" 
-								aria-hidden="true" 
-								xmlns="http://www.w3.org/2000/svg" 
-							>
-								<path d="M1 10.75A4.25 4.25 0 0 0 5.25 15h1a.75.75 0 0 0 0-1.5h-1a2.75 2.75 0 0 1-2.75-2.75v-5.5A2.75 2.75 0 0 1 5.25 2.5h5.5a2.75 2.75 0 0 1 2.75 2.75v.997a.75.75 0 0 0 1.5 0V5.25A4.25 4.25 0 0 0 10.75 1h-5.5A4.25 4.25 0 0 0 1 5.25z"></path><path d="M10.75 14.25a.75.75 0 0 0 1.5 0v-2h2a.75.75 0 0 0 0-1.5h-2v-2a.75.75 0 0 0-1.5 0v2h-2a.75.75 0 0 0 0 1.5h2z"></path>
-							</svg>
+							<ActiveComponent.Header/>
 						</div>
 
-						{/* <ActiveComponent.Body/> */}
-						<span className="px-1 text-lg text-[#f7f8f8]">
-							Convert text to issues
-						</span>
-
-						<div className="h-4"></div>
-
-						<span className="w- text-base font-light text-[#8a8f98]">
-							Seamlessly move between ideation and execution.
-						</span>
-
-
-						<div className="absolute flex flex-col w-59 h-30 translate-x-23 translate-y-1 border border-[#34343a] rounded-lg bg-[#232326] z-10">
-							<div className="basis 2/3 p-3 border-b-1 border-[#34343a]">
-								<div className="flex items-center gap-2 pb-2">
-										<img 
-											className="w-5 h-5 rounded-full"
-											src="https://webassets.linear.app/images/ornj730p/production/835fa19a98f9cd22cfb8da73cc921aa1027edeb6-2048x2048.png?w=72&amp;q=95&amp;auto=format&amp;dpr=2" 
-											alt="Avatar of Julian" 
-										/>
-										<span className="inline-block relative text-sm text-[#f7f8f8]">julian</span>
-										<span className="inline-block relative text-sm text-[#8a8f98]">just now</span>
-										<div className="flex w-18 gap-4 justify-end">
-											<svg 
-												className="w-4 h-4"
-												viewBox="0 0 16 16" 
-												fill="#9c9da1" 
-												role="img" 
-												focusable="false" 
-												aria-hidden="true" 
-												xmlns="http://www.w3.org/2000/svg" 
-											>
-													<path d="M3 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"></path>
-											</svg>
-											<svg 
-												className="w-4 h-4" 
-												viewBox="0 0 16 16" 
-												fill="#9c9da1" 
-												role="img" 
-												focusable="false" 
-												aria-hidden="true" 
-												xmlns="http://www.w3.org/2000/svg" 
-											>
-												<path d="M4.2996 7.23968C4.01775 6.93614 3.5432 6.91857 3.23966 7.20042C2.93613 7.48227 2.91856 7.95682 3.20041 8.26035L6.45041 11.7603C6.7612 12.095 7.29647 12.0766 7.58346 11.7212L12.8335 5.22127C13.0937 4.89904 13.0435 4.42683 12.7213 4.16657C12.399 3.9063 11.9268 3.95654 11.6665 4.27877L6.96051 10.1053L4.2996 7.23968Z"></path>
-											</svg>
-										</div>
-								</div>
-								<span className="text-base font-light text-[#f7f8f8]">sounds like a good idea!</span>
-							</div>
-							<div className="basis-1/3">
-								<div className="flex p-3 gap-2 items-center">
-									<img 
-										className="w-4 h-4 rounded-full"
-										src="https://webassets.linear.app/images/ornj730p/production/33f99f8b8fa79df7781b3db5cb14173849043518-2616x2616.jpg?w=72&amp;q=95&amp;auto=format&amp;dpr=2" 
-										alt="Avatar of Gavin" 
-									></img>
-									<span className="text-sm text-[#62666d]">Reply...</span>
-								</div>
-							</div>
-						</div>
+						<ActiveComponent.Body/>
 
 						<div className="h-6"></div>
 
-						{/* table */}
+						{/* gray line background */}
 						<svg
 							className="w-[333px] h-[165px] z-0"
 							xmlns="http://www.w3.org/2000/svg"
