@@ -4,6 +4,7 @@ import Navbar from './components/Navbar.jsx'
 import Customer from './components/Customer.jsx'
 import Purpose from './components/Purpose.jsx'
 import Planning from './components/Planning.jsx'
+import Tracking from './components/Tracking.jsx'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Customer/>
       <Purpose/>
       <Planning/>
+      <Tracking/>
     </>
   )
 }
