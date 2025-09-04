@@ -34,7 +34,7 @@ export default function Planning() {
 				</div>
 
 				{/* second part */}
-				<div className="flex mt-65 h-130 border-y-3 border-[hsla(0,0%,100%,.05)]">
+				<div className="flex mt-65 h-150 border-y-3 border-[hsla(0,0%,100%,.05)]">
 					<div className="basis-1/2">
 						<h1 className="pt-15 text-2xl font-medium text-[#f7f8f8]">
 							Manage projects end-to-end

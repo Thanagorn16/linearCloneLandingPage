@@ -1,3 +1,4 @@
+import LinearInsight from "./LinearInsight";
 import TrackingGlassGraph from "./TrackingGlassGraph";
 import TrackingWorkGlass from "./TrackingWorkGlass";
 
@@ -40,7 +41,7 @@ export default function Tracking() {
 				</div>
 
 				{/* second part */}
-				<div className="flex mt-65 h-130 border-y-3 border-[hsla(0,0%,100%,.05)]">
+				<div className="flex mt-65 h-150 border-y-3 border-[hsla(0,0%,100%,.05)]">
 					<div className="basis-1/2">
 						<h1 className="pt-15 text-2xl font-medium text-[#f7f8f8]">
 							Build momentum with Cycles
@@ -70,7 +71,11 @@ export default function Tracking() {
 							<TrackingWorkGlass/>
 						</div>
 					</div>
+
 				</div>
+				<div className="h-10"></div>
+				
+				<LinearInsight/>
 
 			</div>
 		</section>
