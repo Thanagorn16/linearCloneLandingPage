@@ -1,7 +1,21 @@
 export default function LinearInsight() {
 	return (
-		<div>
-			<div className="w-1/2 h-150 z-10">
+		<div className="relative overflow-hidden">
+			<img 
+				className="absolute inset-0 z-0 w-full h-[760px] object-cover object-center"
+				alt="A screenshot of a Cycle time chart" 
+				data-nosnippet="true" 
+				data-loaded="true" 
+				loading="lazy" 
+				decoding="async" 
+				data-nimg="1" 
+				src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/f9cf4c26-8956-4aa2-0ffb-26066dfbdf00/f=auto,dpr=2,q=95,fit=scale-down,metadata=none"></img>
+
+			<div className="absolute inset-y-2/3 w-full h-[760px] bg-gradient-to-b from-transparent via-[#090a0b] via-17% to-[#090a0b] z-10"></div>
+			<div className="absolute inset-x-2/3 w-full h-[760px] bg-gradient-to-r from-transparent via-[#090a0b] via-30% to-[#090a0b] z-10"></div>
+			<div className="absolute -inset-x-2/3 w-full h-[760px] bg-gradient-to-l from-transparent via-[#090a0b] via-35% to-[#090a0b] z-10"></div>
+
+			<div className="relative w-1/2 h-150 z-20">
 				<h3 className="text-2xl text-[#f7f8f8]">Linear Insight</h3>
 
 				<div className="h-1.5"></div>
@@ -27,33 +41,7 @@ export default function LinearInsight() {
 					</div>
 				</a>
 
-				<img 
-					className="scale-300 translate-y-1/2 translate-x-1/2 z-0"
-					alt="A screenshot of a Cycle time chart" 
-					data-nosnippet="true" 
-					data-loaded="true" 
-					loading="lazy" 
-					width="1740" 
-					height="930" 
-					decoding="async" 
-					data-nimg="1" 
-					class="inert Image_root__UkRqc" 
-					src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/f9cf4c26-8956-4aa2-0ffb-26066dfbdf00/f=auto,dpr=2,q=95,fit=scale-down,metadata=none"></img>
 				</div>
-
 		</div>
 	);
 }
-
-			<img 
-			    className="scale-200 z-0"
-			    alt="A screenshot of a Cycle time chart" 
-			    data-nosnippet="true" 
-			    data-loaded="true" 
-			    loading="lazy" 
-			    width="1740" 
-			    height="930" 
-			    decoding="async" 
-			    data-nimg="1" 
-			    class="inert Image_root__UkRqc" 
-			    src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/f9cf4c26-8956-4aa2-0ffb-26066dfbdf00/f=auto,dpr=2,q=95,fit=scale-down,metadata=none"></img>
