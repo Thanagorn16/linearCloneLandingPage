@@ -5,6 +5,7 @@ import Customer from './components/Customer.jsx'
 import Purpose from './components/Purpose.jsx'
 import Planning from './components/Planning.jsx'
 import Tracking from './components/Tracking.jsx'
+import AIAssistance from './components/AIAssistance.jsx'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Purpose/>
       <Planning/>
       <Tracking/>
+      <AIAssistance/>
     </>
   )
 }
