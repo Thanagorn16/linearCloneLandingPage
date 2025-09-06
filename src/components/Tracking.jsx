@@ -82,6 +82,7 @@ export default function Tracking() {
 				<div className="h-8"></div>
 
 				<TrackingFooter/>
+				<div className="h-30"></div>
 			</div>
 		</section>
 	);
