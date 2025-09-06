@@ -1,4 +1,5 @@
 import LinearInsight from "./LinearInsight";
+import TrackingFooter from "./TrackingFooter";
 import TrackingGlassGraph from "./TrackingGlassGraph";
 import TrackingWorkGlass from "./TrackingWorkGlass";
 
@@ -73,10 +74,14 @@ export default function Tracking() {
 					</div>
 
 				</div>
+
 				<div className="h-10"></div>
 				
 				<LinearInsight/>
 
+				<div className="h-8"></div>
+
+				<TrackingFooter/>
 			</div>
 		</section>
 	);

@@ -1,6 +1,6 @@
 export default function LinearInsight() {
 	return (
-		<div className="relative overflow-hidden">
+		<div className="relative overflow-hidden border-b-1 border-[hsla(0,0%,100%,.05)]">
 			<img 
 				className="absolute inset-0 z-0 w-full h-[760px] object-cover object-center"
 				alt="A screenshot of a Cycle time chart" 
@@ -40,8 +40,7 @@ export default function LinearInsight() {
 						</svg>
 					</div>
 				</a>
-
-				</div>
+			</div>
 		</div>
 	);
 }
