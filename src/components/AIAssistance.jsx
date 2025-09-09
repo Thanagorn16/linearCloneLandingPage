@@ -2,7 +2,7 @@ import AIListMenu from "./AIListMenu";
 
 export default function AIAssistance() {
     return (
-		<section className="w-full bg-gradient-to-b from-[hsl(210,10%,8%)] to-[#090a0b]">
+		<section className="w-full bg-gradient-to-b from-[hsl(210,10%,8%)] via-[#090a0b] to-[#090a0b]">
 			<div className="max-w-5xl mx-auto px-4 relative">
 				<div className="flex items-center gap-x-2 py-40 pb-5">
 					<div className="w-4 h-2 rounded-full bg-[#02b8cc]"/>
@@ -40,6 +40,39 @@ export default function AIAssistance() {
 				<div className="h-15"></div>
 
                 <AIListMenu/>
+
+				<div className="h-25"></div>
+
+				<div className="flex h-150 border-y-3 border-[hsla(0,0%,100%,.05)]">
+					<div className="basis-1/2">
+						<h1 className="pt-15 text-2xl font-medium text-[#f7f8f8]">
+							Build momentum with Cycles
+						</h1>
+						<p className="text-lg text-[#8a8f98]">
+							Create healthy routines and focus your<br/>
+							team on what work should happen next.
+						</p>
+
+						<div className="h-10"></div>
+
+					</div>
+
+					<div className="basis-1/2 border-l-3 border-[hsla(0,0%,100%,.05)]">
+						<div className="pt-15 px-15">
+							<h1 className="text-2xl font-medium text-[#f7f8f8]">
+								Manage incoming work with Triage
+							</h1>
+							<p className="text-lg text-[#8a8f98]">
+								Review and assign incoming bug reports,<br/>
+								feature requests, adn other unplanned work.
+							</p>
+
+							<div className="h-10"></div>
+
+						</div>
+					</div>
+
+				</div>
 
             </div>
         </section>

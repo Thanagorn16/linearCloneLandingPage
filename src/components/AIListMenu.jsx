@@ -1,9 +1,9 @@
-import { SecondTab, GetSubTab } from "./AIPageComponents";
+import { SecondTab, GetSubTab } from "./AIMenuComponents";
 
 export default function AIListMenu() {
 	return (
 		<div className="flex justify-center transform perspective-dramatic">
-			<div className="flex relative w-5/6 h-80 border border-[#3e3e44] rounded-md bg-[#ffffff1a] rotate-x-2">
+			<div className="flex relative w-5/6 h-80 border border-[#3e3e44] rounded-md bg-gradient-to-b from-[#ffffff1a] to-transparent rotate-x-2">
 				<div className="flex w-full h-13 z-0 p-3 items-center shadow">
 						<div className="absolute w-0.5 h-4 bg-indigo-400 animate-ping"></div>
 						<span className="ml-3 text-lg text-[#8a8f98]">Assign to...</span>
@@ -11,7 +11,7 @@ export default function AIListMenu() {
 
 				<SecondTab/>
 				
-				<div className="flex flex-col inset-y-23.5 absolute w-full h-56 rounded-b-md bg-black/20">
+				<div className="flex flex-col inset-y-23.5 absolute w-full h-56 rounded-b-md bg-transparent">
 					{GetSubTab(DevinIcon, "Devin")}
 					{GetSubTab(ChatPRDIcon, "ChatPRD")}
 					{GetSubTab(LeelaIcon, "Leela")}
