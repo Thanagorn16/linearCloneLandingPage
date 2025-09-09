@@ -11,7 +11,7 @@ export default function AIListMenu() {
 
 				<SecondTab/>
 				
-				<div className="flex flex-col inset-y-23.5 absolute w-full h-56 rounded-b-md bg-transparent">
+				<div className="flex flex-col inset-y-23.5 absolute w-full h-56 rounded-b-md bg-black/20">
 					{GetSubTab(DevinIcon, "Devin")}
 					{GetSubTab(ChatPRDIcon, "ChatPRD")}
 					{GetSubTab(LeelaIcon, "Leela")}
