@@ -1,4 +1,5 @@
 import AIListMenu from "./AIListMenu";
+import ProductIntSection from "./ProductIntSection";
 
 export default function AIAssistance() {
     return (
@@ -46,14 +47,16 @@ export default function AIAssistance() {
 				<div className="flex h-150 border-y-3 border-[hsla(0,0%,100%,.05)]">
 					<div className="basis-1/2">
 						<h1 className="pt-15 text-2xl font-medium text-[#f7f8f8]">
-							Build momentum with Cycles
+							Product Intellignece
 						</h1>
 						<p className="text-lg text-[#8a8f98]">
-							Create healthy routines and focus your<br/>
-							team on what work should happen next.
+							Streamline your product development workflows<br/>
+							with AI assistance for routine, manual tasks.
 						</p>
 
 						<div className="h-10"></div>
+
+						<ProductIntSection/>
 
 					</div>
 
