@@ -24,7 +24,7 @@ export function DropNanWindow() {
 	)
 }
 
-function GetNanWindow() {
+export function GetNanWindow() {
 	return (
 		<div className="absolute py-3 px-4 w-85 h-67 top-1/2 left-1/4 -translate-x-1 -translate-y-0.5 bg-[#141516] border rounded-md border-[rgba(255,255,255,0.05)]">
 			<div className="flex flex-col">

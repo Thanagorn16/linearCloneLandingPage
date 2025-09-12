@@ -1,8 +1,40 @@
-import { GetHexagonIcon, GetMobileIcon, GetMobileSignalIcon, GetTickIcon } from "../Svgs";
-import { GetErinImg, GetNanImg, GetYannImg } from "../Imgs";
-import { DropNanWindow } from "./NanWindow.jsx";
+import { GetMobileIcon } from "../Svgs";
+import { GetNanImg } from "../Imgs";
+import { GetNanWindow } from "./NanWindow.jsx";
+import { GetMobileWindow } from "./MobileWindow.jsx";
 import { useState } from "react";
 
+export function GetDropWindow({label, Icon, title}) {
+	const [open, setOpen] = useState(false);
+
+	const DropWindow = () => {
+		let window;
+		if (label === "nan")
+			window = <GetNanWindow/>
+		else if (label === "mobile")
+			window = <GetMobileWindow/>
+		
+		return window;
+	}
+
+	return (
+		<div
+			onMouseEnter={() => setOpen(true)}
+			onMouseLeave={() => setOpen(false)}
+		>
+			<div className="flex items-center">
+				<button className="flex px-[6px] py-[1px] items-center gap-1.5 border border-dashed border-[#3e3e44]">
+					<Icon/>
+					<span className="text-sm text-[#f7f8f8]">{title}</span>
+				</button>
+			</div>
+
+			{open && (
+				<DropWindow />
+			)}
+		</div>
+	)
+}
 
 export function GetSuggestionComponent() {
 	return (
@@ -10,14 +42,10 @@ export function GetSuggestionComponent() {
 			<span className="w-[76px] inline-block text-[0.8rem] text-[#8a8f98]">Suggestions</span>
 
 			{/* Nan */}
-			<DropNanWindow />
+			<GetDropWindow label={"nan"} Icon={GetNanImg} title="nan"/>
+			<GetDropWindow label={"mobile"} Icon={GetMobileIcon} title="Mobile App Refactor"/>
+			{/* <DropNanWindow /> */}
 
-			<div className="flex items-center">
-				<button className="flex px-[6px] py-[1px] items-center gap-1.5 border border-dashed border-[#3e3e44]">
-					<GetMobileIcon />
-					<span className="text-sm text-[#f7f8f8]">Mobile App Refactor</span>
-				</button>
-			</div>
 
 			<div className="flex items-center">
 				<button className="flex px-[6px] py-[1px] items-center gap-1.5 border border-dashed border-[#3e3e44]">
@@ -60,57 +88,3 @@ export function GetPlainComponent({ topic, text }) {
 	);
 }
 
-
-export function GetMobileWindow() {
-	return (
-		<div className="absolute py-3 px-4 w-85 h-67 top-1/2 left-1/4 -translate-x-1 -translate-y-0.5 bg-[#141516] border rounded-md border-[rgba(255,255,255,0.05)]">
-			{/* col for the whole window */}
-			<div className="flex flex-col">
-				{/* col for the first part */}
-				<div className="flex flex-col pb-3 gap-1 border-b border-[rgba(255,255,255,0.05)]">
-					<div className="flex items-center gap-2">
-						<GetMobileIcon />
-						<span className="text-sm text-[#f7f8f8]">Mobile App Refactor</span>
-					</div>
-					<span className="text-sm text-[#8a8f98]">Optimize mobile app performance</span>
-
-					<div className="flex gap-4">
-						<div className="flex items-center gap-1">
-							<GetHexagonIcon />
-							<span className="text-sm text-[#f7f8f8]">In Progress</span>
-						</div>
-						<div className="flex items-center gap-1">
-							<GetMobileSignalIcon />
-							<span className="text-sm text-[#f7f8f8]">Medium</span>
-						</div>
-					</div>
-					<div className="h-1"></div>
-				</div>
-
-				<div className="h-1"></div>
-
-				<div className="py-3 pb-3 border-b border-[rgba(255,255,255,0.05)]">
-					<h3 className="text-[0.8rem] text-[#f7f8f8]">Why this project was suggested</h3>
-					<div className="h-1"></div>
-					<p className=" text-[0.8rem] text-[#8a8f98] tracking-[-0.1px]">
-						This current issue seems to be a mobile app related<br />
-						bug that would fit well within the scope of this project.
-					</p>
-				</div>
-
-				<div className="py-2 pb-2">
-					<div className="h-2.5"></div>
-
-					<button className="absolute w-80.5 h-8 left-2 bg-[hsl(210,5%,13%)] rounded-md border border-[hsl(240,5%,20%)]">
-						<div className="flex items-center justify-center gap-2">
-							<GetTickIcon />
-							<span className="text-[0.8rem] text-[#f7f8f8]">Accept suggestion</span>
-						</div>
-					</button>
-				</div>
-
-			</div>
-
-		</div>
-	);
-}
