@@ -2,10 +2,18 @@ import { GetMobileIcon } from "../Svgs";
 import { GetNanImg } from "../Imgs";
 import { GetNanWindow } from "./NanWindow.jsx";
 import { GetMobileWindow } from "./MobileWindow.jsx";
+import { GetStackWindow } from "./StackWindow.jsx";
 import { useState } from "react";
+
+const orangeCircle = () => {
+	return (
+		<div className="w-2 h-2 rounded-full bg-[#ec6a5e]"></div>
+	);
+}
 
 export function GetDropWindow({label, Icon, title}) {
 	const [open, setOpen] = useState(false);
+	// const [open, setOpen] = useState(true);
 
 	const DropWindow = () => {
 		let window;
@@ -13,6 +21,8 @@ export function GetDropWindow({label, Icon, title}) {
 			window = <GetNanWindow/>
 		else if (label === "mobile")
 			window = <GetMobileWindow/>
+		else if (label === "stack")
+			window = <GetStackWindow/>
 		
 		return window;
 	}
@@ -40,20 +50,9 @@ export function GetSuggestionComponent() {
 	return (
 		<div className="flex w-105 h-7 items-center gap-3.5">
 			<span className="w-[76px] inline-block text-[0.8rem] text-[#8a8f98]">Suggestions</span>
-
-			{/* Nan */}
 			<GetDropWindow label={"nan"} Icon={GetNanImg} title="nan"/>
 			<GetDropWindow label={"mobile"} Icon={GetMobileIcon} title="Mobile App Refactor"/>
-			{/* <DropNanWindow /> */}
-
-
-			<div className="flex items-center">
-				<button className="flex px-[6px] py-[1px] items-center gap-1.5 border border-dashed border-[#3e3e44]">
-					<div className="w-2 h-2 rounded-full bg-[#ec6a5e]"></div>
-					<span className="text-sm text-[#f7f8f8]">Slack</span>
-				</button>
-			</div>
-
+			<GetDropWindow label={"stack"} Icon={orangeCircle} title="Stack"/>
 		</div>
 	)
 }
