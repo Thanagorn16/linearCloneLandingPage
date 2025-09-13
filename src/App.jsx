@@ -6,6 +6,7 @@ import Purpose from './components/Purpose.jsx'
 import Planning from './components/Planning.jsx'
 import Tracking from './components/Tracking.jsx'
 import AIAssistance from './components/AIAissistComponents/AIAssistance.jsx'
+import CollabPage from './components/CollabComponent/CollabPage.jsx'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Planning/>
       <Tracking/>
       <AIAssistance/>
+      <CollabPage/>
     </>
   )
 }

@@ -81,6 +81,7 @@ export default function AIAssistance() {
 				</div>
 
 			</div>
+			<div className="h-50"></div>
 		</section>
 	);
 }
