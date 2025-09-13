@@ -5,27 +5,15 @@ import { GetMobileWindow } from "./MobileWindow.jsx";
 import { GetStackWindow } from "./StackWindow.jsx";
 import { useState } from "react";
 
-const orangeCircle = () => {
-	return (
-		<div className="w-2 h-2 rounded-full bg-[#ec6a5e]"></div>
-	);
+function DropWindow({label}) {
+	if (label === "nan") return <GetNanWindow/>;
+	if (label === "mobile") return <GetMobileWindow/>;
+	if (label === "stack") return <GetStackWindow/>;
+	return null;
 }
 
 export function GetDropWindow({label, Icon, title}) {
-	const [open, setOpen] = useState(false);
-	// const [open, setOpen] = useState(true);
-
-	const DropWindow = () => {
-		let window;
-		if (label === "nan")
-			window = <GetNanWindow/>
-		else if (label === "mobile")
-			window = <GetMobileWindow/>
-		else if (label === "stack")
-			window = <GetStackWindow/>
-		
-		return window;
-	}
+	const [open, setOpen] = useState(true);
 
 	return (
 		<div
@@ -39,9 +27,7 @@ export function GetDropWindow({label, Icon, title}) {
 				</button>
 			</div>
 
-			{open && (
-				<DropWindow />
-			)}
+			{open && (<DropWindow label={label}/>)}
 		</div>
 	)
 }
@@ -87,3 +73,8 @@ export function GetPlainComponent({ topic, text }) {
 	);
 }
 
+const orangeCircle = () => {
+	return (
+		<div className="w-2 h-2 rounded-full bg-[#ec6a5e]"></div>
+	);
+}
