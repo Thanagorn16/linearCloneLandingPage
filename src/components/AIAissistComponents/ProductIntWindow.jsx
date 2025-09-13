@@ -12,13 +12,10 @@ function DropWindow({label}) {
 	return null;
 }
 
-export function GetDropWindow({label, Icon, title}) {
-	const [open, setOpen] = useState(true);
-
+export function GetDropWindow({label, Icon, title, open, setOpenLabel}) {
 	return (
 		<div
-			onMouseEnter={() => setOpen(true)}
-			onMouseLeave={() => setOpen(false)}
+			onMouseEnter={() => setOpenLabel(label)}
 		>
 			<div className="flex items-center">
 				<button className="flex px-[6px] py-[1px] items-center gap-1.5 border border-dashed border-[#3e3e44]">
@@ -28,17 +25,38 @@ export function GetDropWindow({label, Icon, title}) {
 			</div>
 
 			{open && (<DropWindow label={label}/>)}
+
 		</div>
 	)
 }
 
 export function GetSuggestionComponent() {
+	const [openLabel, setOpenLabel] = useState("nan");
+
 	return (
 		<div className="flex w-105 h-7 items-center gap-3.5">
 			<span className="w-[76px] inline-block text-[0.8rem] text-[#8a8f98]">Suggestions</span>
-			<GetDropWindow label={"nan"} Icon={GetNanImg} title="nan"/>
-			<GetDropWindow label={"mobile"} Icon={GetMobileIcon} title="Mobile App Refactor"/>
-			<GetDropWindow label={"stack"} Icon={orangeCircle} title="Stack"/>
+			<GetDropWindow 
+				label={"nan"} 
+				Icon={GetNanImg} 
+				title="nan" 
+				open={openLabel === "nan"} 
+				setOpenLabel={setOpenLabel}
+			/>
+			<GetDropWindow 
+				label={"mobile"} 
+				Icon={GetMobileIcon} 
+				title="Mobile App Refactor" 
+				open={openLabel === "mobile"} 
+				setOpenLabel={setOpenLabel}
+			/>
+			<GetDropWindow 
+				label={"stack"} 
+				Icon={orangeCircle} 
+				title="Stack" 
+				open={openLabel === "stack"} 
+				setOpenLabel={setOpenLabel}
+			/>
 		</div>
 	)
 }
