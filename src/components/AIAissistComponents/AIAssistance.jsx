@@ -1,4 +1,5 @@
 import AIListMenu from "./AIListMenu";
+import { LinearMCP } from "./LinearMCP";
 import ProductIntSection from "./ProductIntSection";
 
 export default function AIAssistance() {
@@ -61,16 +62,18 @@ export default function AIAssistance() {
 					</div>
 
 					<div className="basis-1/2 border-l-3 border-[hsla(0,0%,100%,.05)]">
-						<div className="pt-15 px-15">
+						<div className="pt-15 pl-15">
 							<h1 className="text-2xl font-medium text-[#f7f8f8]">
-								Manage incoming work with Triage
+								Linear MCP
 							</h1>
 							<p className="text-lg text-[#8a8f98]">
-								Review and assign incoming bug reports,<br />
-								feature requests, adn other unplanned work.
+								Connect Linear to your favorite tools<br/> 
+								including Cursor, Claude, ChatGPT, and more.
 							</p>
 
-							<div className="h-10"></div>
+							<div className="h-20"></div>
+
+							<LinearMCP/>
 
 						</div>
 					</div>
