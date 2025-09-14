@@ -24,7 +24,7 @@ export default function CollabPage() {
 				<div className="h-15"></div>
 
                 <div className="flex w-1200 h-112">
-                    <div className="relative rounded-xl border border-[hsla(0,0%,100%,.08)]">
+                    <div className="relative rounded-xl border border-[hsla(0,0%,100%,.08)] group">
                         <img 
                             className="w-[336px] h-[469px]"
                             data-nosnippet="true" 
@@ -34,13 +34,18 @@ export default function CollabPage() {
                             data-nimg="1"
                             src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/b4ccc6c0-b86b-4e9c-04a9-2ea66fa48e00/f=auto,dpr=2,q=95,fit=scale-down,metadata=none">
                         </img>
-                        <div className="absolute inset-0 w-full h-80 bg-gradient-to-r from-transparent  to-[#090a0b]"></div>
+                        <div className={`absolute inset-0 w-full h-80 bg-[#090a0b]/20
+                            group-hover:opacity-10 transition-opacity duration-300`}
+                        />
+                        <div className="absolute inset-0 w-full h-80 bg-gradient-to-tr from-transparent via-[#090a0b]/95 via-90% to-[#090a0b]"></div>
                         <div className="absolute flex inset-y-4/5 w-full h-20 pl-6">
                             <div className="flex flex-col">
-                                <h3 className="text-sm text-[#8a8f98]">Customer Request</h3>
+                                <h3 className="text-sm text-[hsl(219,6%,47%)] group-hover:text-[hsl(219,6%,57%)] transition-colors duration-300">Customer Request</h3>
                                 <div className="flex items-center gap-23">
-                                    <span className="text-base text-[#f7f8f8]">Build what customers<br/>actually want</span>
-                                    <div className="flex items-center justify-center w-10 h-10 rounded-full border border-[hsla(0,0%,100%,.08)] ">
+                                    <span className="text-base text-[hsl(180,7%,87%)] group-hover:text-[hsl(180,7%,97%)] transition-colors duration-300">Build what customers<br/>actually want</span>
+                                    <div className={`flex items-center justify-center w-10 h-10 rounded-full border bg-transparent border-[hsl(0,0%,20%)]
+                                        group-hover:bg-[hsl(0,0%,20%)] transition-colors duration-300
+                                    `}>
                                         <GetArrowIcon/>
                                     </div>
                                 </div>
@@ -54,9 +59,6 @@ export default function CollabPage() {
         </section>
     );
 }
-
-                        {/* <div className="absolute inset-0 w-full h-80 bg-gradient-to-r from-transparent via-transparent via-40% to-[#090a0b]"></div>
-                        <div className="absolute inset-0 w-full h-80 bg-gradient-to-t from-transparent via-transparent via-80% to-[#090a0b]"></div> */}
 
 function SnapScroll() {
     const containerRef = useRef(null);

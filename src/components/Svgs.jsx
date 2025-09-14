@@ -94,7 +94,7 @@ export function GetFlowerIcon() {
 export function GetArrowIcon() {
 	return (
 		<svg 
-			className="w-4 h-4" 
+			className="w-4 h-4 group-hover:fill-[hsl(219,6%,97%)] transition-colors duration-300" 
 			viewBox="0 0 16 16" 
 			fill="#8a8f98" 
 			role="img" 
