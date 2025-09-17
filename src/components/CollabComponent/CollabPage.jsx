@@ -1,10 +1,52 @@
 import { useRef, useState } from "react";
 import { GetArrowIcon } from "../Svgs";
+import { FirstImg, SecondImg, ThirdImg } from "./CardImgs";
+import { CarouselNew } from "./CarouselComponent";
 
 const itemBorder = 'border-[hsla(0,0%,100%,.05)]';
 
+function CollabCard({CardImg, text1, text2}) {
+	return (
+			<div className="w-[336px] h-[469px] relative rounded-xl border border-[hsla(0,0%,100%,.08)] group overflow-hidden">
+				<CardImg/>
+
+				{/* overlay */}
+				<div className={`absolute inset-0 w-full h-120 bg-[#090a0b]/20
+					group-hover:opacity-10 transition-opacity duration-300`}
+				/>
+				<div className="absolute inset-0 w-full h-120 bg-gradient-to-tl from-transparent  to-[#090a0b]/35"></div>
+				<div className="absolute inset-0 w-full h-120 bg-gradient-to-r from-transparent  to-[#090a0b]/95"></div>
+
+				{/* overlay the image that may be bigger then the other */}
+				<div className="absolute inset-y-80 w-full h-120 bg-gradient-to-b from-transparent via-[#090a0b] via-15%  to-[#090a0b]/95"></div>
+
+				{/* content */}
+				<div className="absolute flex inset-y-4/5 w-full h-20 pl-6">
+					<div className="flex flex-col">
+						<h3 className="text-sm text-[hsl(219,6%,47%)] group-hover:text-[hsl(219,6%,57%)] transition-colors duration-300">
+							{text1}
+						</h3>
+						<div className="flex items-center gap-23">
+							<span className="text-base text-[hsl(180,7%,87%)] group-hover:text-[hsl(180,7%,97%)] transition-colors duration-300">
+								{text2}
+							</span>
+							<div className={`flex items-center justify-center w-10 h-10 rounded-full border bg-transparent border-[hsl(0,0%,20%)]
+								group-hover:bg-[hsl(0,0%,20%)] transition-colors duration-300
+							`}>
+								<GetArrowIcon/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+	);
+
+}
+
+
 export default function CollabPage() {
-    return (
+	return (
 		<section className="w-full bg-gradient-to-b from-[hsl(210,10%,8%)] via-[#090a0b] to-[#090a0b]">
 			<div className="max-w-5xl mx-auto px-4 relative">
 				<div className="flex items-center gap-x-2 py-40 pb-5">
@@ -12,124 +54,95 @@ export default function CollabPage() {
 					<p className="text-sm text-[#d0d6e0]">Workflows and integrations</p>
 				</div>
 
-                <div className="flex items-center gap-20">
-                    <h1 className="text-6xl text-[#f7f8f8] font-medium">Collaborate across<br/>tools and teams</h1>
-                    <p className="text-lg text-[#8a8f98] mt-10">
-                        Expand the capabilities of the Linear system<br/> 
-                        with a wide variety of integrations that keep<br/> 
-                        everyone in your organization aligned and focused.
-                    </p>
-                </div>
+				<div className="flex items-center gap-20">
+					<h1 className="text-6xl text-[#f7f8f8] font-medium">Collaborate across<br/>tools and teams</h1>
+					<p className="text-lg text-[#8a8f98] mt-10">
+						Expand the capabilities of the Linear system<br/> 
+						with a wide variety of integrations that keep<br/> 
+						everyone in your organization aligned and focused.
+					</p>
+				</div>
 
 				<div className="h-15"></div>
 
-                <div className="flex w-1200 h-112">
-                    <div className="relative rounded-xl border border-[hsla(0,0%,100%,.08)] group">
-                        <img 
-                            className="w-[336px] h-[469px]"
-                            data-nosnippet="true" 
-                            data-loaded="true" 
-                            loading="lazy" 
-                            decoding="async" 
-                            data-nimg="1"
-                            src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/b4ccc6c0-b86b-4e9c-04a9-2ea66fa48e00/f=auto,dpr=2,q=95,fit=scale-down,metadata=none">
-                        </img>
-                        <div className={`absolute inset-0 w-full h-80 bg-[#090a0b]/20
-                            group-hover:opacity-10 transition-opacity duration-300`}
-                        />
-                        <div className="absolute inset-0 w-full h-80 bg-gradient-to-tr from-transparent via-[#090a0b]/95 via-90% to-[#090a0b]"></div>
-                        <div className="absolute flex inset-y-4/5 w-full h-20 pl-6">
-                            <div className="flex flex-col">
-                                <h3 className="text-sm text-[hsl(219,6%,47%)] group-hover:text-[hsl(219,6%,57%)] transition-colors duration-300">Customer Request</h3>
-                                <div className="flex items-center gap-23">
-                                    <span className="text-base text-[hsl(180,7%,87%)] group-hover:text-[hsl(180,7%,97%)] transition-colors duration-300">Build what customers<br/>actually want</span>
-                                    <div className={`flex items-center justify-center w-10 h-10 rounded-full border bg-transparent border-[hsl(0,0%,20%)]
-                                        group-hover:bg-[hsl(0,0%,20%)] transition-colors duration-300
-                                    `}>
-                                        <GetArrowIcon/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+				<Carousel/>
 
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    );
+			</div>
+			{/* <Carousel/> */}
+		</section>
+	);
 }
 
-function SnapScroll() {
-    const containerRef = useRef(null);
-    const [index, setIndex] = useState(0);
+function Carousel() {
+	const [expanded, setExpanded] = useState(false);
+	const [index, setIndex] = useState(0);
 
-    const scrollTo = (i) => {
-        if (!containerRef.current) return;
-        
-        const child = containerRef.current.children[i];
-        if (child) {
-            child.scrollIntoView({behavior: "smooth", inline: "center"});
-            setIndex[i];
-        }
-    }
+	const cards = getCards();
 
-    // return (
-    //     <div className="">
+	const next = () => {
+		setExpanded(true);
+		setIndex((prev) => (prev + 1) % cards.length);
+	};
 
-    //     </div>
-    // );
+	const prev = () => {
+		setIndex((prev) => (prev - 1 + cards.length) % cards.length);
+	};
+
+			<div className="max-w-5xl mx-auto px-4 relative"></div>
+	return (
+		<div className="relative">
+			<div className={`${!expanded ? "relative max-w-5xl mx-auto px-4" : "w-1200 px-4"}`}>
+				<div className={`relative h-[469px]
+					${expanded ? "w-screen" : "w-1200 px-4"}
+				`}>
+
+					<div className="overflow-hidden">
+						<div
+							className="flex gap-3 transition-transform duration-500"
+							style={{ transform: `translateX(-${index * 100}%)` }}
+						>
+							{cards.map((card, i) => (
+								<div key={i}>
+									{card}
+								</div>
+							))}
+						</div>
+					</div>
+
+					<div className="h-10"></div>
+
+				</div>
+			</div>
+
+			<div className="absolute flex gap-3">
+				<button 
+					onClick={prev}
+					className="w-10 h-10 bg-white"
+				>
+					prev
+				</button>
+				<button 
+					onClick={next}
+					className="w-10 h-10 bg-white"
+				>
+					next
+				</button>
+			</div>
+		</div>
+	);
 }
 
-// function SnapScroll () {
-//     const containerRef = useRef(null);
-//     const [index, setIndex] = useState(0);
+function getCards () {
+    const cards = [
+		// <div className="w-[210px]"></div>,
+        <CollabCard CardImg={FirstImg} text1={"Customer Requests"} text2={<>Build what customers<br/>actually want</>}/>,
+        <CollabCard CardImg={SecondImg} text1={"Powerful git workflows"} text2={<>Automate pull requests<br/>and commit workflows</>}/>,
+        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
+        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
+        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
+        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
+        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
+    ]
 
-//     const scrollTo = (i) => {
-//         if (!containerRef.current) return;
-//         const child = containerRef.current.children[i];
-//         if (child) {
-//             child.scrollIntoView({ behavior: "smooth", inline: "center"});
-//             setIndex[i];
-//         }
-//     }
-
-//     const colors = [
-//         "bg-red-500",
-//         "bg-green-500",
-//         "bg-blue-500",
-//         "bg-yellow-500"
-//     ]
-
-//     return (
-//         <div className="relative w-full">
-//             <div            
-//                 ref={containerRef}
-//                 className="flex overflow-x-scroll snap-x snap-mandatory scroll-smooth w-full"
-//             >
-//                 {colors.map((bg, i) => (
-//                     <div
-//                         key={i}
-//                         className={`snap-center shrink-0 w-full h-60 ${bg}`}
-//                     >
-//                     </div>
-//                 ))}
-//             </div>
-
-//             <div className="absolute top-2 right-2 flex gap-2">
-//                 <button
-//                     className="px-2 py-1 bg-gray-800 text-white rounded"
-//                     onClick={() => scrollTo(Math.max(index - 1, 0))}
-//                 >
-//                     Prev
-//                 </button>
-//                 <button
-//                     className="px-2 py-1 bg-gray-800 text-white rounded"
-//                     onClick={() => scrollTo(Math.max(index + 1, 3))}
-//                 >
-//                    Next 
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// }
+    return cards;
+}
