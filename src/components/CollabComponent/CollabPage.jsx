@@ -65,84 +65,69 @@ export default function CollabPage() {
 
 				<div className="h-15"></div>
 
-				<Carousel/>
+				{/* <Carousel/> */}
 
 			</div>
-			{/* <Carousel/> */}
+
+			<Carousel/>
 		</section>
 	);
 }
 
 function Carousel() {
-  const [index, setIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(0);
+	const scrollRef = useRef(null);
+	const [canScrollLeft, setCanScrollLeft] = useState(false);
+	const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const cards = getCards();
-  const lastIndex = cards.length - 1;
-  const cardRef = useRef(null);
+	const scroll = (direction) => {
+		const container = scrollRef.current;
+		const scrollAmount = 336; // card width + gap
 
-  // Measure card width (including gap)
-  useEffect(() => {
-    if (cardRef.current) {
-      const style = window.getComputedStyle(cardRef.current);
-      const gap = parseInt(style.marginRight) || 0;
-      setCardWidth(cardRef.current.offsetWidth + gap);
-    }
-  }, []);
+		if (direction === "left")
+			container.scrollLeft -= scrollAmount;
+		else
+			container.scrollLeft += scrollAmount;
 
-  const next = () => {
-    if (index < lastIndex) setIndex(index + 1);
-  };
+		setTimeout(() => {
+			setCanScrollLeft(container.scrollLeft > 0);
+			setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth);
+		}, 100);
+	}
 
-  const prev = () => {
-    if (index > 0) {
-      setIndex(index - 1);
-    } else {
-      setIndex(0);
-    }
-  };
+	const cards = getCards();
 
-  return (
-    <div className="relative">
-      {/* Animated container */}
-      <div
-        className={`transition-all duration-500 ease-in-out w-screen px-8`}
-      >
-        <div className="relative h-[469px] overflow-hidden">
-          <div
-            className="flex gap-3 transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${index * cardWidth}px)` }}
-          >
-            {cards.map((card, i) => (
-              <div
-                key={i}
-                ref={i === 0 ? cardRef : null} // measure only first card
-                className="shrink-0"
-              >
-                {card}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+	return (
+		<div className="relative">
+				<div 
+					ref={scrollRef}
+					className={`flex gap-3 pl-50 2xl:pl-195 pr-15 2xl:pr-25 overflow-x-auto scrollbar-hide scroll-smooth`}
+					style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
+				>
+					{cards.map((card, index) => (
+						<div key={index}>
+							{card}
+						</div>
+					))}
+				</div>
 
-      {/* Controls */}
-      <div className="absolute inset-x-0 -bottom-14 flex justify-center gap-3">
-        <button
-          onClick={prev}
-		  className="bg-white"
-        >
-          Prev
-        </button>
-        <button
-          onClick={next}
-		  className="bg-white"
-        >
-          Next
-        </button>
-      </div>
-    </div>
-  );
+				<div className="flex justify-center mt-15 gap-3">
+					<button 
+						onClick={() => scroll('left')}
+						className={`w-10 h-10 bg-white`}
+					>
+						prev
+					</button>
+					<button 
+						onClick={() => scroll('right')}
+						className={`w-10 h-10 bg-white`}
+					>
+						next
+					</button>
+
+				</div>
+
+		</div>
+	);
 }
 
 function getCards () {
