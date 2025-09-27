@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { GetArrowIcon } from "../Svgs";
-import { FirstImg, SecondImg, ThirdImg } from "./CardImgs";
-import { CarouselNew } from "./CarouselComponent";
+import { FifthImg, FirstImg, FourthImg, LastImg, SecondImg, SixthImg, ThirdImg } from "./CardImgs";
 
 const itemBorder = 'border-[hsla(0,0%,100%,.05)]';
 
@@ -26,8 +25,8 @@ function CollabCard({CardImg, text1, text2}) {
 						<h3 className="text-sm text-[hsl(219,6%,47%)] group-hover:text-[hsl(219,6%,57%)] transition-colors duration-300">
 							{text1}
 						</h3>
-						<div className="flex items-center gap-23">
-							<span className="text-base text-[hsl(180,7%,87%)] group-hover:text-[hsl(180,7%,97%)] transition-colors duration-300">
+						<div className="flex items-center gap-15">
+							<span className="w-45 text-base text-[hsl(180,7%,87%)] group-hover:text-[hsl(180,7%,97%)] transition-colors duration-300">
 								{text2}
 							</span>
 							<div className={`flex items-center justify-center w-10 h-10 rounded-full border bg-transparent border-[hsl(0,0%,20%)]
@@ -136,10 +135,10 @@ function getCards () {
         <CollabCard CardImg={FirstImg} text1={"Customer Requests"} text2={<>Build what customers<br/>actually want</>}/>,
         <CollabCard CardImg={SecondImg} text1={"Powerful git workflows"} text2={<>Automate pull requests<br/>and commit workflows</>}/>,
         <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
-        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
-        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
-        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
-        <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
+        <CollabCard CardImg={FourthImg} text1={"Linear Asks"} text2={<>Turn workplace requests<br/>into actionable issues</>}/>,
+        <CollabCard CardImg={FifthImg} text1={"Linear integration"} text2={<>100+ ways to enhance<br/>your Linear experince</>}/>,
+        <CollabCard CardImg={SixthImg} text1={"Figma integration"} text2={<>Bridge the gap between<br/>engineering and design</>}/>,
+        <CollabCard CardImg={LastImg} text1={"Built for developers"} text2={<>Build your own add-<br/>ons with Linear API</>}/>,
     ]
 
     return cards;

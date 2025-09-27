@@ -39,3 +39,59 @@ export function ThirdImg() {
 		</img>
 	);
 }
+
+export function FourthImg () {
+	return (
+		<img 
+			className="w-[336px] h-[469px]"
+			data-nosnippet="true" 
+			data-loaded="true" 
+			loading="lazy" 
+			decoding="async" 
+			data-nimg="1"
+			src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/906ad833-45a5-4b19-e4de-153896e13e00/f=auto,dpr=2,q=95,fit=scale-down,metadata=none">
+		</img>
+	);
+}
+
+export function FifthImg () {
+	return (
+		<img 
+			className="w-[336px] h-[469px]"
+			data-nosnippet="true" 
+			data-loaded="true" 
+			loading="lazy" 
+			decoding="async" 
+			data-nimg="1"
+			src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/0e7273bb-e885-4715-4f2d-bc67fb4eb300/f=auto,dpr=2,q=95,fit=scale-down,metadata=none">
+		</img>
+	);
+}
+
+export function SixthImg () {
+	return (
+		<img 
+			className="w-[336px] h-[469px]"
+			data-nosnippet="true" 
+			data-loaded="true" 
+			loading="lazy" 
+			decoding="async" 
+			data-nimg="1"
+			src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/71e8ff5e-2889-4b4d-e12c-d3bb8d817700/f=auto,dpr=2,q=95,fit=scale-down,metadata=none">
+		</img>
+	);
+}
+
+export function LastImg () {
+	return (
+		<img 
+			className="w-[336px] h-[469px]"
+			data-nosnippet="true" 
+			data-loaded="true" 
+			loading="lazy" 
+			decoding="async" 
+			data-nimg="1"
+			src="https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/a516badb-c0aa-4d0d-2ffa-965b529e1a00/f=auto,dpr=2,q=95,fit=scale-down,metadata=none">
+		</img>
+	);
+}
