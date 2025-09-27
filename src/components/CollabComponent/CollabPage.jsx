@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { GetArrowIcon } from "../Svgs";
 import { FirstImg, SecondImg, ThirdImg } from "./CardImgs";
 import { CarouselNew } from "./CarouselComponent";
@@ -74,62 +74,75 @@ export default function CollabPage() {
 }
 
 function Carousel() {
-	const [expanded, setExpanded] = useState(false);
-	const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
 
-	const cards = getCards();
+  const cards = getCards();
+  const lastIndex = cards.length - 1;
+  const cardRef = useRef(null);
 
-	const next = () => {
-		setExpanded(true);
-		setIndex((prev) => (prev + 1) % cards.length);
-	};
+  // Measure card width (including gap)
+  useEffect(() => {
+    if (cardRef.current) {
+      const style = window.getComputedStyle(cardRef.current);
+      const gap = parseInt(style.marginRight) || 0;
+      setCardWidth(cardRef.current.offsetWidth + gap);
+    }
+  }, []);
 
-	const prev = () => {
-		setIndex((prev) => (prev - 1 + cards.length) % cards.length);
-	};
+  const next = () => {
+    if (index < lastIndex) setIndex(index + 1);
+  };
 
-			<div className="max-w-5xl mx-auto px-4 relative"></div>
-	return (
-		<div className="relative">
-			<div className={`${!expanded ? "relative max-w-5xl mx-auto px-4" : "w-1200 px-4"}`}>
-				<div className={`relative h-[469px]
-					${expanded ? "w-screen" : "w-1200 px-4"}
-				`}>
+  const prev = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    } else {
+      setIndex(0);
+    }
+  };
 
-					<div className="overflow-hidden">
-						<div
-							className="flex gap-3 transition-transform duration-500"
-							style={{ transform: `translateX(-${index * 100}%)` }}
-						>
-							{cards.map((card, i) => (
-								<div key={i}>
-									{card}
-								</div>
-							))}
-						</div>
-					</div>
+  return (
+    <div className="relative">
+      {/* Animated container */}
+      <div
+        className={`transition-all duration-500 ease-in-out w-screen px-8`}
+      >
+        <div className="relative h-[469px] overflow-hidden">
+          <div
+            className="flex gap-3 transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${index * cardWidth}px)` }}
+          >
+            {cards.map((card, i) => (
+              <div
+                key={i}
+                ref={i === 0 ? cardRef : null} // measure only first card
+                className="shrink-0"
+              >
+                {card}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-					<div className="h-10"></div>
-
-				</div>
-			</div>
-
-			<div className="absolute flex gap-3">
-				<button 
-					onClick={prev}
-					className="w-10 h-10 bg-white"
-				>
-					prev
-				</button>
-				<button 
-					onClick={next}
-					className="w-10 h-10 bg-white"
-				>
-					next
-				</button>
-			</div>
-		</div>
-	);
+      {/* Controls */}
+      <div className="absolute inset-x-0 -bottom-14 flex justify-center gap-3">
+        <button
+          onClick={prev}
+		  className="bg-white"
+        >
+          Prev
+        </button>
+        <button
+          onClick={next}
+		  className="bg-white"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function getCards () {
