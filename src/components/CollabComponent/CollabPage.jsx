@@ -64,11 +64,10 @@ export default function CollabPage() {
 
 				<div className="h-15"></div>
 
-				{/* <Carousel/> */}
-
 			</div>
 
 			<Carousel/>
+
 		</section>
 	);
 }
@@ -80,7 +79,7 @@ function Carousel() {
 
 	const scroll = (direction) => {
 		const container = scrollRef.current;
-		const scrollAmount = 336; // card width + gap
+		const scrollAmount = 348; // card width + gap
 
 		if (direction === "left")
 			container.scrollLeft -= scrollAmount;
@@ -112,15 +111,27 @@ function Carousel() {
 				<div className="flex justify-center mt-15 gap-3">
 					<button 
 						onClick={() => scroll('left')}
-						className={`w-10 h-10 bg-white`}
+						disabled={!canScrollLeft}
+						className={`w-10 h-10 flex items-center justify-center border rounded-full rotate-180 ${
+							canScrollLeft
+							? 'bg-[hsl(240,5%,16%)] border-[hsl(240,5%,25%)] cursor-pointer hover:bg-[hsl(240,5%,30%)]'
+							: 'bg-[hsl(240,5%,10%)] border-[hsl(240,5%,15%)] cursor-not-allowed'
+						}
+						`}
 					>
-						prev
+						{GetArrowIcon('w-5', 'h-5')}
 					</button>
 					<button 
 						onClick={() => scroll('right')}
-						className={`w-10 h-10 bg-white`}
+						disabled={!canScrollRight}
+						className={`w-10 h-10 flex items-center justify-center border rounded-full ${
+							canScrollRight
+							? 'bg-[hsl(240,5%,16%)] border-[hsl(240,5%,25%)] cursor-pointer hover:bg-[hsl(240,5%,30%)]'
+							: 'bg-[hsl(240,5%,10%)] border-[hsl(240,5%,15%)] cursor-not-allowed'
+						}
+						`}
 					>
-						next
+						{GetArrowIcon('w-5', 'h-5')}
 					</button>
 
 				</div>
@@ -131,7 +142,6 @@ function Carousel() {
 
 function getCards () {
     const cards = [
-		// <div className="w-[210px]"></div>,
         <CollabCard CardImg={FirstImg} text1={"Customer Requests"} text2={<>Build what customers<br/>actually want</>}/>,
         <CollabCard CardImg={SecondImg} text1={"Powerful git workflows"} text2={<>Automate pull requests<br/>and commit workflows</>}/>,
         <CollabCard CardImg={ThirdImg} text1={"Linear Mobile"} text2={<>Move product work<br/>forward from anywhere</>}/>,
