@@ -1,6 +1,6 @@
 export function svgBackground() {
 	return (
-		<div>
+		<div className="">
 			<svg xmlns="http://www.w3.org/2000/svg" width="1022" height="854" fill="none" viewBox="0 0 1022 854" className="page_underTheHoodAsset__DMfL4">
 				<rect width="597" height="99" x="279.5" y="754.5" stroke="#fff" strokeOpacity=".1" rx="9.5"></rect>
 				<rect width="67" height="67" x="295.5" y="770.5" stroke="#fff" strokeOpacity=".15" rx="7.5"></rect>
