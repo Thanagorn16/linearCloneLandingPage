@@ -1,7 +1,5 @@
 import { Carousel } from "./CarouselComponent";
 
-const itemBorder = 'border-[hsla(0,0%,100%,.05)]';
-
 export default function CollabPage() {
 	return (
 		<section className="w-full bg-gradient-to-b from-[hsl(210,10%,8%)] via-[#090a0b] to-[#090a0b]">
@@ -25,6 +23,8 @@ export default function CollabPage() {
 			</div>
 
 			<Carousel/>
+
+			<div className="h-30"></div>
 
 		</section>
 	);
