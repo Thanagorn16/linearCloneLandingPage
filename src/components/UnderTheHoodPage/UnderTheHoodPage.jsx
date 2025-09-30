@@ -100,13 +100,14 @@ export default function UnderTheHoodPage() {
 					</div>
 
 					{/* background */}
-					<div className="absolute left-1/2 translate-x-20 -translate-y-5">
+					<div className="absolute left-1/2 translate-x-15 -translate-y-5">
 						{svgBackground()}
 					</div>
 				</div>
 
 			</div>
 
+			<div className="h-50"></div>
 
 		</section>
 	);

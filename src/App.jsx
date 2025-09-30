@@ -8,6 +8,8 @@ import Tracking from './components/Tracking.jsx'
 import AIAssistance from './components/AIAissistComponents/AIAssistance.jsx'
 import CollabPage from './components/CollabComponent/CollabPage.jsx'
 import UnderTheHoodPage from './components/UnderTheHoodPage/UnderTheHoodPage.jsx'
+import Footer from './components/Footer/Footer.jsx'
+import GetStart from './components/GetStart/GetStart.jsx'
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
       <AIAssistance/>
       <CollabPage/>
       <UnderTheHoodPage/>
+      <GetStart/>
     </>
   )
 }
