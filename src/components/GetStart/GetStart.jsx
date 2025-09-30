@@ -6,12 +6,12 @@ export default function GetStart() {
 
                 <div className="flex gap-2">
                     <button className={`w-32 h-11 bg-[hsl(240,5%,16%)] border border-[#3e3e44] rounded-xl text-[#f7f8f8] font-medium px-3
-                        transition-colors duration-150 ease-out hover:bg-[hsl(240,5%,20%)]
+                        transition-colors duration-150 ease-out hover:bg-[hsl(240,5%,20%)] cursor-pointer
                     `}> 
                         Contact sales
                     </button>
-                    <button className={`w-31 h-11 bg-[#e6e6e6] border border-[#3e3e44] rounded-xl text-[#08090a] font-medium px-3
-                        transition-colors duration-150 ease-out hover:bg-[hsl(240,5%,20%)]
+                    <button className={`w-31 h-11 bg-[hsl(0,0%,90%)] border border-[#3e3e44] rounded-xl text-[#08090a] font-medium px-3
+                        transition-colors duration-150 ease-out hover:bg-[hsl(0,0%,100%)] cursor-pointer
                     `}> 
                         Get started
                     </button>

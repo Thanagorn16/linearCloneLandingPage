@@ -25,6 +25,7 @@ function App() {
       <CollabPage/>
       <UnderTheHoodPage/>
       <GetStart/>
+      <Footer/>
     </>
   )
 }
