@@ -1,3 +1,7 @@
+import devImg from '/images/development.png'
+import speedImg from '/images/speed.png'
+import craftImg from '/images/craft.png'
+
 function Card({image, alt, title}) {
 	return (
 		<div className="basis-64 group">
@@ -39,9 +43,9 @@ export default function Purpose() {
 
 			{/* cards */}
 			<div className="flex flex-row mt-15 gap-x-30">
-				<Card image="../../development.png" alt="development" title={<>Purpose-built for<br/>product development</>}/>
-				<Card image="../../speed.png" alt="speed" title='Designed to move fast'/>
-				<Card image="../../craft.png" alt="craft" title='Crafted to perfection'/>
+				<Card image={devImg} alt="development" title={<>Purpose-built for<br/>product development</>}/>
+				<Card image={speedImg} alt="speed" title='Designed to move fast'/>
+				<Card image={craftImg} alt="craft" title='Crafted to perfection'/>
 			</div>
 
 		</section>

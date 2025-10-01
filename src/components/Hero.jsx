@@ -1,6 +1,7 @@
 import { clsx } from 'clsx'
 import { useInView } from 'react-intersection-observer'
-import React, {useEffect, useState, useRef, useCallback } from "react";
+import React, {useEffect, useState, useRef, useCallback } from "react"
+import  startVideo from '/videos/start.mp4'
 
 const ANIMATION_CONFIG = {
 	WORD_DELEY: 80,
@@ -162,7 +163,8 @@ export default function Hero () {
 						preload="metadata"
 						aria-label="Linear product demonstration"
 					>
-						<source src="../../start.mp4" type="video/mp4" />
+						{/* <source src="../videos/start.mp4" type="video/mp4" /> */}
+						<source src={startVideo} type="video/mp4" />
 						<p>Your browser doesn't support video playback.</p>
 					</video>
 				</div>
